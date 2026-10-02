@@ -1,132 +1,160 @@
 /**
- * GTM Research & Documentation Portal Application Engine
+ * GTM Research & Presentation Deck Controller
  * Case Study No. 51: Farm Produce Photo Catalogue
- * Charts, Interactive Financial Calculator, 6-Slide Deck, Tab Navigation
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  initPortalNavigation();
-  initReportTabs();
-  initCharts();
-  initFinancialCalculator();
-  initPresentationDeck();
-  initPrintButton();
+  setupSectionNav();
+  setupSlideDeck();
+  setupCharts();
+  setupCalculator();
+  setupReportChapters();
+  setupPrint();
 });
 
-// ================= 1. PORTAL SECTION NAVIGATION =================
-function initPortalNavigation() {
-  const navBtns = document.querySelectorAll(".nav-tab-btn");
-  navBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      navBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+// Section Nav
+function setupSectionNav() {
+  const tabs = document.querySelectorAll(".nav-tab");
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
 
-      const targetSectionId = `sec-${btn.dataset.section}`;
-      document.querySelectorAll(".doc-section").forEach(sec => {
-        sec.classList.remove("active");
-      });
-
-      const activeSec = document.getElementById(targetSectionId);
-      if (activeSec) {
-        activeSec.classList.add("active");
-        window.scrollTo({ top: activeSec.offsetTop - 70, behavior: "smooth" });
+      const secId = `sec-${tab.dataset.sec}`;
+      document.querySelectorAll(".sec-pane").forEach(p => p.classList.remove("active"));
+      const targetPane = document.getElementById(secId);
+      if (targetPane) {
+        targetPane.classList.add("active");
+        window.scrollTo({ top: targetPane.offsetTop - 60, behavior: "smooth" });
       }
     });
   });
 }
 
-// ================= 2. BUSINESS REPORT SUB-TABS =================
-function initReportTabs() {
-  const repTabs = document.querySelectorAll(".rep-tab");
-  repTabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      repTabs.forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
+// 6-Slide Presentation Deck Controller
+function setupSlideDeck() {
+  let cur = 1;
+  const total = 6;
 
-      const chId = tab.dataset.ch;
-      document.querySelectorAll(".report-chapter").forEach(ch => {
-        ch.classList.remove("active");
-      });
+  const prevBtn = document.getElementById("prevSlideBtn");
+  const nextBtn = document.getElementById("nextSlideBtn");
+  const countDisplay = document.getElementById("currentSlideNum");
+  const notesBtn = document.getElementById("toggleNotesBtn");
+  const chipBtns = document.querySelectorAll(".chip-slide");
 
-      const activeCh = document.getElementById(chId);
-      if (activeCh) activeCh.classList.add("active");
+  function goToSlide(n) {
+    if (n < 1 || n > total) return;
+    cur = n;
+
+    document.querySelectorAll(".slide-view").forEach(s => s.classList.remove("active"));
+    document.querySelector(`.slide-view[data-slide="${cur}"]`)?.classList.add("active");
+
+    chipBtns.forEach(c => {
+      c.classList.toggle("active", parseInt(c.dataset.sl, 10) === cur);
+    });
+
+    if (countDisplay) countDisplay.textContent = cur;
+    if (prevBtn) prevBtn.disabled = cur === 1;
+    if (nextBtn) nextBtn.disabled = cur === total;
+  }
+
+  prevBtn?.addEventListener("click", () => goToSlide(cur - 1));
+  nextBtn?.addEventListener("click", () => goToSlide(cur + 1));
+
+  chipBtns.forEach(c => {
+    c.addEventListener("click", () => {
+      goToSlide(parseInt(c.dataset.sl, 10));
     });
   });
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    const deckPane = document.getElementById("sec-presentation-deck");
+    if (!deckPane || !deckPane.classList.contains("active")) return;
+    if (e.key === "ArrowLeft") goToSlide(cur - 1);
+    if (e.key === "ArrowRight") goToSlide(cur + 1);
+  });
+
+  // Toggle speaker notes
+  notesBtn?.addEventListener("click", () => {
+    notesBtn.classList.toggle("active");
+    document.querySelectorAll(".speaker-notes-box").forEach(b => b.classList.toggle("open"));
+  });
+
+  // Stopwatch Timer
+  let timerInterval = null;
+  let seconds = 0;
+  let running = false;
+  const timerDisplay = document.getElementById("presentationTimer");
+  const toggleTimerBtn = document.getElementById("timerToggleBtn");
+  const resetTimerBtn = document.getElementById("timerResetBtn");
+
+  function updateTimer() {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    timerDisplay.textContent = `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+  }
+
+  toggleTimerBtn?.addEventListener("click", () => {
+    if (!running) {
+      running = true;
+      toggleTimerBtn.innerHTML = `<i class="fa-solid fa-pause"></i> Pause`;
+      timerInterval = setInterval(() => {
+        seconds++;
+        updateTimer();
+      }, 1000);
+    } else {
+      running = false;
+      toggleTimerBtn.innerHTML = `<i class="fa-solid fa-play"></i> Start`;
+      clearInterval(timerInterval);
+    }
+  });
+
+  resetTimerBtn?.addEventListener("click", () => {
+    clearInterval(timerInterval);
+    running = false;
+    seconds = 0;
+    updateTimer();
+    if (toggleTimerBtn) toggleTimerBtn.innerHTML = `<i class="fa-solid fa-play"></i> Start`;
+  });
+
+  goToSlide(1);
 }
 
-// ================= 3. CHART.JS VISUALIZATIONS =================
-function initCharts() {
-  // Chart 1: Farmer Realization Comparison (Bar Chart)
-  const ctxRealization = document.getElementById("farmerRealizationChart");
-  if (ctxRealization) {
-    new Chart(ctxRealization, {
+// Charts
+function setupCharts() {
+  // Chart 1: Realization
+  const c1 = document.getElementById("farmerRealizationChart");
+  if (c1) {
+    new Chart(c1, {
       type: "bar",
       data: {
-        labels: [
-          "Mandi Gross",
-          "Mandi Comm (8%)",
-          "Mandi Cuts (4%)",
-          "Mandi Freight",
-          "MANDI NET PAYOUT",
-          "FPO Contract Rate",
-          "FPO Service Fee",
-          "FPO NET PAYOUT"
-        ],
+        labels: ["Mandi Gross", "Mandi Cuts (-20.4%)", "MANDI NET", "FPO Contract", "FPO Fee (-6.3%)", "FPO NET"],
         datasets: [{
-          label: "Value per Quintal (₹)",
-          data: [2200, -176, -88, -185, 1751, 2350, -147.25, 2202.75],
-          backgroundColor: [
-            "#94a3b8",
-            "#f87171",
-            "#f87171",
-            "#f87171",
-            "#ef4444",
-            "#34d399",
-            "#fbbf24",
-            "#059669"
-          ],
-          borderRadius: 6
+          data: [2200, -449, 1751, 2350, -147.25, 2202.75],
+          backgroundColor: ["#94a3b8", "#f87171", "#ef4444", "#34d399", "#fbbf24", "#059669"],
+          borderRadius: 4
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: (context) => ` ₹${Math.abs(context.raw).toLocaleString()} / Quintal`
-            }
-          }
-        },
+        plugins: { legend: { display: false } },
         scales: {
-          y: {
-            beginAtZero: false,
-            grid: { color: "#f1f5f9" },
-            ticks: {
-              callback: (val) => `₹${val}`
-            }
-          },
-          x: {
-            grid: { display: false },
-            ticks: { font: { size: 10 } }
-          }
+          y: { grid: { color: "#f1f5f9" }, ticks: { callback: v => `₹${v}` } },
+          x: { grid: { display: false } }
         }
       }
     });
   }
 
-  // Chart 2: Buyer Segment Absorption Mix (Donut Chart)
-  const ctxBuyer = document.getElementById("buyerSegmentChart");
-  if (ctxBuyer) {
-    new Chart(ctxBuyer, {
+  // Chart 2: Buyer Mix
+  const c2 = document.getElementById("buyerSegmentChart");
+  if (c2) {
+    new Chart(c2, {
       type: "doughnut",
       data: {
-        labels: [
-          "Modern Retail & Q-Commerce (45%)",
-          "HoReCa & Cloud Kitchens (35%)",
-          "Agro-Processors & Puree (20%)"
-        ],
+        labels: ["Modern Retail / Q-Com (45%)", "HoReCa (35%)", "Agro-Processors (20%)"],
         datasets: [{
           data: [45, 35, 20],
           backgroundColor: ["#059669", "#2563eb", "#d97706"],
@@ -137,28 +165,23 @@ function initCharts() {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: "bottom",
-            labels: { font: { size: 11 }, padding: 14 }
-          }
-        },
-        cutout: "68%"
+        plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } },
+        cutout: "65%"
       }
     });
   }
 
-  // Chart 3: 90-Day Scaling Trajectory (Mixed Chart)
-  const ctxScaling = document.getElementById("scalingTrajectoryChart");
-  if (ctxScaling) {
-    new Chart(ctxScaling, {
+  // Chart 3: Scaling
+  const c3 = document.getElementById("scalingTrajectoryChart");
+  if (c3) {
+    new Chart(c3, {
       type: "line",
       data: {
-        labels: ["Day 1", "Day 15", "Day 30 (M1)", "Day 45", "Day 60 (M2)", "Day 75", "Day 90 (M3)"],
+        labels: ["D1", "D15", "D30 (M1)", "D45", "D60 (M2)", "D75", "D90 (M3)"],
         datasets: [
           {
             type: "bar",
-            label: "Weekly Volume (Metric Tonnes)",
+            label: "Weekly Volume (MT)",
             data: [0, 8, 18, 32, 50, 62, 72],
             backgroundColor: "rgba(16, 185, 129, 0.4)",
             borderColor: "#10b981",
@@ -168,12 +191,10 @@ function initCharts() {
           },
           {
             type: "line",
-            label: "Active Member Farmers",
+            label: "Active Farmers",
             data: [15, 30, 45, 80, 110, 150, 180],
-            borderColor: "#7c3aed",
-            backgroundColor: "#7c3aed",
-            tension: 0.35,
-            pointRadius: 4,
+            borderColor: "#2563eb",
+            tension: 0.3,
             yAxisID: "y1"
           }
         ]
@@ -181,41 +202,22 @@ function initCharts() {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        interaction: { mode: "index", intersect: false },
-        plugins: {
-          legend: { position: "bottom", labels: { font: { size: 11 } } }
-        },
+        plugins: { legend: { position: "bottom" } },
         scales: {
-          y: {
-            type: "linear",
-            display: true,
-            position: "left",
-            title: { display: true, text: "Volume (MT)", font: { size: 10 } },
-            grid: { color: "#f1f5f9" }
-          },
-          y1: {
-            type: "linear",
-            display: true,
-            position: "right",
-            title: { display: true, text: "Farmers", font: { size: 10 } },
-            grid: { drawOnChartArea: false }
-          }
+          y: { type: "linear", position: "left", grid: { color: "#f1f5f9" } },
+          y1: { type: "linear", position: "right", grid: { drawOnChartArea: false } }
         }
       }
     });
   }
 
-  // Chart 4: Quality Grading Distribution (Pie Chart)
-  const ctxGrading = document.getElementById("gradingDistributionChart");
-  if (ctxGrading) {
-    new Chart(ctxGrading, {
+  // Chart 4: Quality Grading
+  const c4 = document.getElementById("gradingDistributionChart");
+  if (c4) {
+    new Chart(c4, {
       type: "pie",
       data: {
-        labels: [
-          "Grade A (Supermarket Premium - 60%)",
-          "Grade B (HoReCa / Culinary - 30%)",
-          "Grade C (Agro-Processing - 10%)"
-        ],
+        labels: ["Grade A (Supermarket - 60%)", "Grade B (HoReCa - 30%)", "Grade C (Processing - 10%)"],
         datasets: [{
           data: [60, 30, 10],
           backgroundColor: ["#10b981", "#f59e0b", "#6366f1"],
@@ -226,222 +228,80 @@ function initCharts() {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: "bottom",
-            labels: { font: { size: 11 }, padding: 14 }
-          }
-        }
+        plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } }
       }
     });
   }
 }
 
-// ================= 4. INTERACTIVE FINANCIAL CALCULATOR =================
-function initFinancialCalculator() {
-  const inputLots = document.getElementById("inputLots");
-  const inputBatchSize = document.getElementById("inputBatchSize");
-  const inputPrice = document.getElementById("inputPrice");
-  const inputCommission = document.getElementById("inputCommission");
+// Financial Calculator
+function setupCalculator() {
+  const iLots = document.getElementById("inputLots");
+  const iBatch = document.getElementById("inputBatchSize");
+  const iPrice = document.getElementById("inputPrice");
+  const iComm = document.getElementById("inputCommission");
 
-  const valLots = document.getElementById("valLots");
-  const valBatchSize = document.getElementById("valBatchSize");
-  const valPrice = document.getElementById("valPrice");
-  const valCommission = document.getElementById("valCommission");
+  function calc() {
+    const lots = parseInt(iLots.value, 10);
+    const batch = parseInt(iBatch.value, 10);
+    const price = parseInt(iPrice.value, 10);
+    const comm = parseFloat(iComm.value);
 
-  // Output fields
-  const resWeeklyVol = document.getElementById("resWeeklyVol");
-  const resWeeklyGMV = document.getElementById("resWeeklyGMV");
-  const resMonthlyGMV = document.getElementById("resMonthlyGMV");
-  const resFpoGross = document.getElementById("resFpoGross");
-  const resFpoOpex = document.getElementById("resFpoOpex");
-  const resNetSurplus = document.getElementById("resNetSurplus");
-  const resMandiPayout = document.getElementById("resMandiPayout");
-  const resFpoPayout = document.getElementById("resFpoPayout");
-  const resDeltaTag = document.getElementById("resDeltaTag");
+    document.getElementById("valLots").textContent = `${lots} Lots / Wk`;
+    document.getElementById("valBatchSize").textContent = `${batch} Quintals`;
+    document.getElementById("valPrice").textContent = `₹${price.toLocaleString()} / Qtl`;
+    document.getElementById("valCommission").textContent = `${comm.toFixed(1)}%`;
 
-  function recalculate() {
-    const lots = parseInt(inputLots.value, 10);
-    const batchSizeQtl = parseInt(inputBatchSize.value, 10);
-    const benchmarkPrice = parseInt(inputPrice.value, 10);
-    const commissionPct = parseFloat(inputCommission.value);
-
-    // Update labels
-    valLots.textContent = `${lots} Lots / Week`;
-    valBatchSize.textContent = `${batchSizeQtl} Quintals (${(batchSizeQtl * 0.1).toFixed(1)} MT)`;
-    valPrice.textContent = `₹${benchmarkPrice.toLocaleString()} / Quintal`;
-    valCommission.textContent = `${commissionPct.toFixed(2)}%`;
-
-    // 1. Volumes
-    const weeklyQtl = lots * batchSizeQtl;
+    const weeklyQtl = lots * batch;
     const weeklyMT = (weeklyQtl * 0.1).toFixed(1);
-    const monthlyQtl = weeklyQtl * 4.2;
-
-    // 2. Gross Merchandise Value (GMV)
-    const weeklyGMV = weeklyQtl * benchmarkPrice;
+    const weeklyGMV = weeklyQtl * price;
     const monthlyGMV = Math.round(weeklyGMV * 4.2);
 
-    // 3. FPO Gross Revenues
-    const facilitationRev = monthlyGMV * (commissionPct / 100);
-    const listingRev = lots * 4.2 * 50; // ₹50/listing
-    const logisticsMargin = monthlyGMV * 0.01; // 1.0%
-    const totalFpoGross = Math.round(facilitationRev + listingRev + logisticsMargin);
-
-    // 4. Fixed + Variable OPEX
-    // Baseline ₹86,000 + 0.25% GMV spoilage contingency
+    const fpoRev = Math.round((monthlyGMV * (comm / 100)) + (lots * 4.2 * 50) + (monthlyGMV * 0.01));
     const opex = Math.round(86000 + (monthlyGMV * 0.0025));
-    const netSurplus = Math.round(totalFpoGross - opex);
+    const surplus = fpoRev - opex;
 
-    // 5. Per Quintal Farmer Economics
-    const mandiCommissionDeduction = benchmarkPrice * 0.08;
-    const mandiKataChhoot = benchmarkPrice * 0.04;
-    const mandiFreight = 185;
-    const mandiNetPayout = benchmarkPrice - mandiCommissionDeduction - mandiKataChhoot - mandiFreight;
+    const mandiPayout = Math.round(price * 0.796);
+    const fpoPayout = Math.round((price * 1.068) - ((price * 1.068 * (comm / 100)) + 65));
+    const delta = fpoPayout - mandiPayout;
+    const deltaPct = ((delta / mandiPayout) * 100).toFixed(1);
+    const annualCollectiveGain = (delta * weeklyQtl * 4.2 * 12 / 10000000).toFixed(2);
 
-    // FPO Model: direct premium +6.8% from institutional buyer
-    const directContractPrice = benchmarkPrice * 1.068;
-    const fpoDeduction = (directContractPrice * (commissionPct / 100)) + 65; // commission + ₹65 local crating
-    const fpoNetPayout = directContractPrice - fpoDeduction;
+    document.getElementById("resWeeklyVol").textContent = `${weeklyMT} MT`;
+    document.getElementById("resMonthlyGMV").textContent = `₹${monthlyGMV.toLocaleString()}`;
+    document.getElementById("resFpoGross").textContent = `₹${fpoRev.toLocaleString()}`;
+    document.getElementById("resNetSurplus").textContent = `₹${surplus.toLocaleString()}`;
+    document.getElementById("resMandiPayout").textContent = `₹${mandiPayout.toLocaleString()} / Qtl`;
+    document.getElementById("resFpoPayout").textContent = `₹${fpoPayout.toLocaleString()} / Qtl`;
 
-    const deltaPerQtl = fpoNetPayout - mandiNetPayout;
-    const deltaPct = ((deltaPerQtl / mandiNetPayout) * 100).toFixed(1);
-    const annualCollectiveGain = Math.round(deltaPerQtl * monthlyQtl * 12);
-
-    // Render Outputs
-    resWeeklyVol.textContent = `${weeklyMT} MT`;
-    resWeeklyGMV.textContent = `₹${weeklyGMV.toLocaleString()}`;
-    resMonthlyGMV.textContent = `₹${monthlyGMV.toLocaleString()}`;
-    resFpoGross.textContent = `₹${totalFpoGross.toLocaleString()}`;
-    resFpoOpex.textContent = `₹${opex.toLocaleString()}`;
-    resNetSurplus.textContent = `₹${netSurplus.toLocaleString()}`;
-
-    resMandiPayout.textContent = `₹${Math.round(mandiNetPayout).toLocaleString()} / Qtl`;
-    resFpoPayout.textContent = `₹${Math.round(fpoNetPayout).toLocaleString()} / Qtl`;
-
-    resDeltaTag.innerHTML = `🎉 <strong>+₹${deltaPerQtl.toFixed(2)} per Quintal (+${deltaPct}% Net Increase)</strong> • Total Annual Member Gain: <strong>₹${(annualCollectiveGain / 10000000).toFixed(2)} Crores</strong>`;
+    document.getElementById("resDeltaTag").innerHTML = `🎉 <strong>+₹${delta} / Qtl (+${deltaPct}% Net Increase)</strong> • Annual Member Uplift: <strong>₹${annualCollectiveGain} Crores</strong>`;
   }
 
-  [inputLots, inputBatchSize, inputPrice, inputCommission].forEach(el => {
-    el.addEventListener("input", recalculate);
-  });
-
-  recalculate();
+  [iLots, iBatch, iPrice, iComm].forEach(el => el?.addEventListener("input", calc));
+  calc();
 }
 
-// ================= 5. 6-SLIDE PRESENTATION DECK CONTROLLER =================
-function initPresentationDeck() {
-  let currentSlide = 1;
-  const totalSlides = 6;
-
-  const prevBtn = document.getElementById("prevSlideBtn");
-  const nextBtn = document.getElementById("nextSlideBtn");
-  const currentSlideNum = document.getElementById("currentSlideNum");
-  const toggleNotesBtn = document.getElementById("toggleNotesBtn");
-
-  function showSlide(index) {
-    if (index < 1 || index > totalSlides) return;
-    currentSlide = index;
-
-    document.querySelectorAll(".slide-card").forEach(card => {
-      card.classList.remove("active");
+// Report Chapters
+function setupReportChapters() {
+  const chBtns = document.querySelectorAll(".ch-btn");
+  chBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      chBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const id = btn.dataset.ch;
+      document.querySelectorAll(".ch-content").forEach(c => c.classList.remove("active"));
+      document.getElementById(id)?.classList.add("active");
     });
-
-    const targetSlide = document.querySelector(`.slide-card[data-slide="${currentSlide}"]`);
-    if (targetSlide) targetSlide.classList.add("active");
-
-    if (currentSlideNum) currentSlideNum.textContent = currentSlide;
-
-    if (prevBtn) prevBtn.disabled = currentSlide === 1;
-    if (nextBtn) nextBtn.disabled = currentSlide === totalSlides;
-  }
-
-  if (prevBtn) prevBtn.addEventListener("click", () => showSlide(currentSlide - 1));
-  if (nextBtn) nextBtn.addEventListener("click", () => showSlide(currentSlide + 1));
-
-  // Keyboard navigation (ArrowLeft, ArrowRight)
-  document.addEventListener("keydown", (e) => {
-    // Only handle if deck section is active
-    const deckSec = document.getElementById("sec-presentation-deck");
-    if (!deckSec || !deckSec.classList.contains("active")) return;
-
-    if (e.key === "ArrowLeft") {
-      showSlide(currentSlide - 1);
-    } else if (e.key === "ArrowRight") {
-      showSlide(currentSlide + 1);
-    }
   });
-
-  // Toggle speaker notes
-  if (toggleNotesBtn) {
-    toggleNotesBtn.addEventListener("click", () => {
-      toggleNotesBtn.classList.toggle("active");
-      document.querySelectorAll(".speaker-notes").forEach(notes => {
-        notes.classList.toggle("open");
-      });
-    });
-  }
-
-  // Presentation Timer (Stopwatch)
-  let timerInterval = null;
-  let elapsedSeconds = 0;
-  let isTimerRunning = false;
-  const timerDisplay = document.getElementById("presentationTimer");
-  const timerToggleBtn = document.getElementById("timerToggleBtn");
-  const timerResetBtn = document.getElementById("timerResetBtn");
-
-  function updateTimerDisplay() {
-    const mins = Math.floor(elapsedSeconds / 60);
-    const secs = elapsedSeconds % 60;
-    timerDisplay.textContent = `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
-    if (elapsedSeconds >= 900) { // 15 minutes limit
-      timerDisplay.style.color = "#ef4444";
-    }
-  }
-
-  if (timerToggleBtn) {
-    timerToggleBtn.addEventListener("click", () => {
-      if (!isTimerRunning) {
-        isTimerRunning = true;
-        timerToggleBtn.innerHTML = `<i class="fa-solid fa-pause"></i> Pause`;
-        timerInterval = setInterval(() => {
-          elapsedSeconds++;
-          updateTimerDisplay();
-        }, 1000);
-      } else {
-        isTimerRunning = false;
-        timerToggleBtn.innerHTML = `<i class="fa-solid fa-play"></i> Resume`;
-        clearInterval(timerInterval);
-      }
-    });
-  }
-
-  if (timerResetBtn) {
-    timerResetBtn.addEventListener("click", () => {
-      clearInterval(timerInterval);
-      isTimerRunning = false;
-      elapsedSeconds = 0;
-      updateTimerDisplay();
-      if (timerToggleBtn) timerToggleBtn.innerHTML = `<i class="fa-solid fa-play"></i> Start`;
-      timerDisplay.style.color = "inherit";
-    });
-  }
-
-  showSlide(1);
 }
 
-// ================= 6. PRINT HANDLER =================
-function initPrintButton() {
-  const printBtn = document.getElementById("printReportBtn");
-  if (printBtn) {
-    printBtn.addEventListener("click", () => {
-      // Make all chapters active for print
-      document.querySelectorAll(".report-chapter").forEach(ch => ch.classList.add("active"));
-      window.print();
-      // Re-activate only the selected one
-      const currentCh = document.querySelector(".rep-tab.active")?.dataset.ch || "ch1";
-      document.querySelectorAll(".report-chapter").forEach(ch => {
-        if (ch.id !== currentCh) ch.classList.remove("active");
-      });
+function setupPrint() {
+  document.getElementById("printReportBtn")?.addEventListener("click", () => {
+    document.querySelectorAll(".ch-content").forEach(c => c.classList.add("active"));
+    window.print();
+    const curCh = document.querySelector(".ch-btn.active")?.dataset.ch || "ch1";
+    document.querySelectorAll(".ch-content").forEach(c => {
+      if (c.id !== curCh) c.classList.remove("active");
     });
-  }
+  });
 }
