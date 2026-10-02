@@ -251,6 +251,7 @@ let ORDERS_LEDGER = [
 let activeSelectedLot = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
   renderProduceGrid(PRODUCE_DATABASE);
   renderPendingLots();
   renderOrdersTable();
@@ -260,6 +261,32 @@ document.addEventListener("DOMContentLoaded", () => {
   setupModals();
   setupFlyout();
 });
+
+// Theme Management (Dark / Light Mode)
+function initTheme() {
+  const toggleBtn = document.getElementById("themeToggleBtn");
+  const currentTheme = localStorage.getItem("gtm_theme") || "light";
+  setTheme(currentTheme);
+
+  toggleBtn?.addEventListener("click", () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const nextTheme = isDark ? "light" : "dark";
+    setTheme(nextTheme);
+    localStorage.setItem("gtm_theme", nextTheme);
+  });
+}
+
+function setTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  const toggleBtn = document.getElementById("themeToggleBtn");
+  if (toggleBtn) {
+    if (theme === "dark") {
+      toggleBtn.innerHTML = `<i class="fa-solid fa-sun" style="color:#10b981;"></i> <span class="theme-label">Light</span>`;
+    } else {
+      toggleBtn.innerHTML = `<i class="fa-solid fa-moon"></i> <span class="theme-label">Dark</span>`;
+    }
+  }
+}
 
 // Segment Nav
 function setupNav() {

@@ -22,7 +22,11 @@
         <span class="course-tag">Go-to-Market & Customer Operations • Case Study 51</span>
       </div>
       <div class="bar-nav">
-        <a href="../demo/index.html" class="link-demo" target="_blank"><i class="fa-solid fa-play"></i> Live Prototype Demo</a>
+        <!-- Dark Mode Toggle Button -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Dark/Light Mode">
+          <i class="fa-solid fa-moon"></i> <span class="theme-label">Dark</span>
+        </button>
+        <a href="../demo/index.html" class="link-demo" target="_blank"><i class="fa-solid fa-play"></i> Live Demo</a>
         <a href="../index.html" class="link-hub"><i class="fa-solid fa-house"></i> Master Hub</a>
       </div>
     </div>
@@ -94,7 +98,7 @@
 
     <!-- ================= SECTION 1: 6-SLIDE PRESENTATION DECK ================= -->
     <section class="sec-pane active" id="sec-presentation-deck">
-      <div class="deck-frame">
+      <div class="deck-frame" id="presentationDeckContainer">
         <!-- Deck Controller Bar -->
         <div class="deck-bar">
           <div class="deck-timer-pill">
@@ -115,22 +119,26 @@
           </div>
 
           <div class="deck-actions">
-            <button class="deck-nav-btn" id="prevSlideBtn" title="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="deck-nav-btn" id="prevSlideBtn" title="Previous Slide (←)"><i class="fa-solid fa-chevron-left"></i></button>
             <span class="slide-count"><strong id="currentSlideNum">1</strong> / 6</span>
-            <button class="deck-nav-btn" id="nextSlideBtn" title="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
-            <button class="deck-notes-btn" id="toggleNotesBtn"><i class="fa-solid fa-microphone"></i> Speaker Notes</button>
+            <button class="deck-nav-btn" id="nextSlideBtn" title="Next Slide (→)"><i class="fa-solid fa-chevron-right"></i></button>
+            <button class="deck-notes-btn" id="toggleNotesBtn" title="Toggle Presenter Script"><i class="fa-solid fa-microphone"></i> Speaker Notes</button>
+            <!-- Fullscreen Button -->
+            <button class="deck-fullscreen-btn" id="btnFullscreenDeck" title="Fullscreen Presentation Mode (Press F)">
+              <i class="fa-solid fa-expand"></i> Fullscreen
+            </button>
           </div>
         </div>
 
-        <!-- Slide Stage -->
-        <div class="slide-stage">
+        <!-- Slide Stage (16:9 Keynote Canvas) -->
+        <div class="slide-stage" id="slideStage">
 
           <!-- SLIDE 1: Problem vs Solution -->
           <div class="slide-view active" data-slide="1">
             <div class="slide-top">
               <span class="slide-tag">Slide 1 of 6 • Problem & Opportunity</span>
               <h2>Eliminating the Mandi Squeeze: Digital Transformation for 180 Smallholders</h2>
-              <p>Moving from Blind Harvests & Distress Selling to 72h Pre-Harvest Discovery</p>
+              <p>Moving from Blind Harvests & Distress Mandi Selling to 72h Pre-Harvest Digital Discovery</p>
             </div>
 
             <div class="slide-grid-2">
@@ -139,12 +147,12 @@
                   <i class="fa-solid fa-circle-xmark"></i> Traditional Mandi Friction
                 </div>
                 <div class="deck-stat-callout">
-                  <strong>-25.8% Haircut</strong>
-                  <span>Lost to Middlemen, Grading Cuts & Transit Spoilage</span>
+                  <strong>-25.8% Value Lost to Middlemen</strong>
+                  <span>Extracted via commissions, subjective cuts & transit spoilage</span>
                 </div>
                 <ul class="deck-list">
-                  <li><strong>Blind Harvesting:</strong> Farmers harvest perishables with zero confirmed buyer demand.</li>
-                  <li><strong>Subjective Mandi Grading:</strong> Commission agents enforce arbitrary 15–30% discounts.</li>
+                  <li><strong>Blind Harvesting:</strong> Farmers harvest perishables with zero confirmed buyers.</li>
+                  <li><strong>Subjective Mandi Grading:</strong> Middlemen enforce arbitrary 15–30% haircuts.</li>
                   <li><strong>Hidden Deductions:</strong> Unofficial weighment cuts (*kata chhoot* of 3–5%).</li>
                   <li><strong>Transit Spoilage:</strong> Unventilated gunny sacks cause 16–22% transit damage.</li>
                 </ul>
@@ -155,13 +163,13 @@
                   <i class="fa-solid fa-circle-check"></i> FPO Photo Catalogue Solution
                 </div>
                 <div class="deck-stat-callout text-emerald">
-                  <strong>+₹451 / Quintal</strong>
-                  <span>Net Payout Uplift • Total Annual Gain: ₹1.64 Crores</span>
+                  <strong>+₹451 / Quintal Net Uplift</strong>
+                  <span>+25.8% Net Cash Gain • Total Annual Member Uplift: ₹1.64 Crores</span>
                 </div>
                 <ul class="deck-list">
-                  <li><strong>Pre-Harvest Listing:</strong> Weekly catalogue published 72h prior to harvest.</li>
-                  <li><strong>Verified Visual Proof:</strong> 3 calibrated photos eliminate sight-unseen buyer doubts.</li>
-                  <li><strong>Advance Pre-Booking:</strong> Firm Purchase Orders & locked rates before harvesting.</li>
+                  <li><strong>Pre-Harvest Listing:</strong> Weekly catalogue published 72h before cutting crop.</li>
+                  <li><strong>Verified Visual Proof:</strong> 3 calibrated photos eliminate sight-unseen doubts.</li>
+                  <li><strong>Advance Pre-Booking:</strong> Firm Purchase Orders & locked rates before harvest.</li>
                   <li><strong>T+24h UPI Payout:</strong> Direct bank transfer upon digital weighment at buyer DC.</li>
                 </ul>
               </div>
@@ -184,20 +192,20 @@
             <div class="slide-grid-3">
               <div class="deck-card">
                 <span class="tier-badge">Tier 1 • 45% Volume</span>
-                <h4>Modern Grocery & Q-Commerce</h4>
-                <p class="tier-clients">Blinkit, Zepto, Supermarkets</p>
+                <h4>Modern Retail & Q-Commerce</h4>
+                <p class="tier-clients">Blinkit, Zepto, Supermarket Chains</p>
                 <div class="tier-feature">
-                  <strong>Grade A Produce:</strong> Uniform color & size (<2% defect).
+                  <strong>Grade A Produce:</strong> Uniform color & size (&lt;2% defect).
                 </div>
                 <div class="tier-feature">
-                  <strong>+36h Shelf Life:</strong> Farmgate-direct dispatch preserves freshness.
+                  <strong>+36h Shelf Life:</strong> Direct farmgate dispatch preserves freshness.
                 </div>
               </div>
 
               <div class="deck-card">
                 <span class="tier-badge">Tier 2 • 35% Volume</span>
                 <h4>HoReCa & Cloud Kitchens</h4>
-                <p class="tier-clients">Hotels, Restaurants, Caterers</p>
+                <p class="tier-clients">Hotels, Restaurants, Cloud Kitchens</p>
                 <div class="tier-feature">
                   <strong>Grade A & B Staples:</strong> High culinary pulp & flavor.
                 </div>
@@ -282,7 +290,7 @@
             <div class="slide-top">
               <span class="slide-tag">Slide 4 of 6 • Financial Model & Unit Economics</span>
               <h2>Financial Viability: Sustainable Margins & Farmer Realization</h2>
-              <p>₹66.5 Lakhs Monthly GMV | ₹2.05 Lakhs Net Operational Surplus</p>
+              <p>₹66.5 Lakhs Monthly GMV | ₹2.05 Lakhs Net Monthly Surplus</p>
             </div>
 
             <div class="slide-grid-2">
@@ -374,7 +382,7 @@
               <div class="road-box">
                 <span class="r-badge">Month 1 • Days 1–30</span>
                 <h5>Foundation & Standardization</h5>
-                <p>Train 40 lead farmers across 2 staple clusters; calibrate grading kits; execute 15 trial lots with zero errors.</p>
+                <p>Train 40 lead farmers across 2 staple clusters; calibrate grading kits; execute 15 trial lots.</p>
               </div>
 
               <div class="road-box">
@@ -407,6 +415,16 @@
             </div>
           </div>
 
+        </div>
+
+        <!-- Fullscreen Bottom Control Overlay -->
+        <div class="fullscreen-overlay-bar" id="fullscreenControls">
+          <button class="fs-ctrl-btn" id="fsPrevBtn"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+          <div class="fs-dots" id="fsDotsContainer">
+            <!-- Dynamic dots -->
+          </div>
+          <button class="fs-ctrl-btn" id="fsNextBtn">Next <i class="fa-solid fa-arrow-right"></i></button>
+          <button class="fs-exit-btn" id="fsExitBtn"><i class="fa-solid fa-compress"></i> Exit Fullscreen (Esc)</button>
         </div>
       </div>
     </section>

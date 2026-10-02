@@ -73,18 +73,19 @@ We operate as a high-volume, tech-enabled agribusiness platform. Rather than hol
 GTM_major_project/
 ├── index.html                    # 🚀 Master Launchpad Hub (connects Demo & Research)
 ├── README.md                     # 📖 Complete documentation & presentation guide
+├── CANVA_PRESENTATION_PROMPT.md  # 🎨 Detailed copy-paste prompts for Canva & Gamma AI slides
 ├── BUSINESS_REPORT.md            # 📄 Formal 4–5 page academic business report
 ├── BUSINESS_MODEL_CANVAS.md      # 📊 Complete 9-box Business Model Canvas analysis
 ├── SUPPLY_CHAIN_FLOW.md          # 🚚 End-to-end supply chain protocol & RACI matrix
 ├── PRESENTATION_6_SLIDES.md      # 🎙️ 6-slide executive deck & speaker talking points
-├── demo/                         # 📱 Standalone Prototype Website
+├── demo/                         # 📱 Standalone Prototype Website (Dark & Light Mode)
 │   ├── index.html                # Buyer catalogue, farmer submission & QC audit portal
 │   ├── styles.css                # Clean, responsive minimalist styling
 │   └── app.js                    # 40-lot database, filtering, booking & WhatsApp RFQ
-└── research/                     # 🔬 Standalone Research & Documentation Portal
-    ├── index.html                # Executive analytics portal, interactive 6-slide deck & BMC
+└── research/                     # 🔬 Standalone Research Portal (Dark Mode & Keynote Deck)
+    ├── index.html                # Executive analytics, fullscreen presentation deck & BMC
     ├── styles.css                # Modern dashboard styling & print stylesheet
-    └── app.js                    # Chart.js visualizations, financial ROI calculator & timer
+    └── app.js                    # Fullscreen Keynote engine, Chart.js, ROI calculator & timer
 ```
 
 ---

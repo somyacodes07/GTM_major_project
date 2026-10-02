@@ -1,9 +1,13 @@
 /**
  * GTM Research & Presentation Deck Controller
  * Case Study No. 51: Farm Produce Photo Catalogue
+ * Features: Fullscreen Keynote Mode, Dark Mode Persistence, Charts & Calculator
  */
 
+let chartInstances = {};
+
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
   setupSectionNav();
   setupSlideDeck();
   setupCharts();
@@ -12,7 +16,57 @@ document.addEventListener("DOMContentLoaded", () => {
   setupPrint();
 });
 
-// Section Nav
+// ================= THEME (DARK / LIGHT MODE) =================
+function initTheme() {
+  const toggleBtn = document.getElementById("themeToggleBtn");
+  const currentTheme = localStorage.getItem("gtm_theme") || "light";
+
+  setTheme(currentTheme);
+
+  toggleBtn?.addEventListener("click", () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const nextTheme = isDark ? "light" : "dark";
+    setTheme(nextTheme);
+    localStorage.setItem("gtm_theme", nextTheme);
+  });
+}
+
+function setTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  const toggleBtn = document.getElementById("themeToggleBtn");
+  if (toggleBtn) {
+    if (theme === "dark") {
+      toggleBtn.innerHTML = `<i class="fa-solid fa-sun text-emerald"></i> <span class="theme-label">Light</span>`;
+    } else {
+      toggleBtn.innerHTML = `<i class="fa-solid fa-moon"></i> <span class="theme-label">Dark</span>`;
+    }
+  }
+
+  // Update chart axes colors if charts exist
+  updateChartsTheme(theme);
+}
+
+function updateChartsTheme(theme) {
+  const isDark = theme === "dark";
+  const gridColor = isDark ? "#1e293b" : "#f1f5f9";
+  const textColor = isDark ? "#94a3b8" : "#64748b";
+
+  Object.values(chartInstances).forEach(chart => {
+    if (chart.options.scales) {
+      if (chart.options.scales.x) {
+        chart.options.scales.x.ticks.color = textColor;
+        if (chart.options.scales.x.grid) chart.options.scales.x.grid.color = gridColor;
+      }
+      if (chart.options.scales.y) {
+        chart.options.scales.y.ticks.color = textColor;
+        if (chart.options.scales.y.grid) chart.options.scales.y.grid.color = gridColor;
+      }
+    }
+    chart.update();
+  });
+}
+
+// ================= SECTION NAVIGATION =================
 function setupSectionNav() {
   const tabs = document.querySelectorAll(".nav-tab");
   tabs.forEach(tab => {
@@ -31,7 +85,7 @@ function setupSectionNav() {
   });
 }
 
-// 6-Slide Presentation Deck Controller
+// ================= 6-SLIDE PRESENTATION DECK CONTROLLER =================
 function setupSlideDeck() {
   let cur = 1;
   const total = 6;
@@ -41,6 +95,25 @@ function setupSlideDeck() {
   const countDisplay = document.getElementById("currentSlideNum");
   const notesBtn = document.getElementById("toggleNotesBtn");
   const chipBtns = document.querySelectorAll(".chip-slide");
+  const deckContainer = document.getElementById("presentationDeckContainer");
+  const btnFullscreen = document.getElementById("btnFullscreenDeck");
+  const fsExitBtn = document.getElementById("fsExitBtn");
+  const fsPrevBtn = document.getElementById("fsPrevBtn");
+  const fsNextBtn = document.getElementById("fsNextBtn");
+  const fsDotsContainer = document.getElementById("fsDotsContainer");
+
+  // Create Fullscreen Dots
+  if (fsDotsContainer) {
+    fsDotsContainer.innerHTML = Array.from({ length: total }, (_, i) => 
+      `<div class="fs-dot ${i === 0 ? 'active' : ''}" data-target="${i + 1}" title="Slide ${i + 1}"></div>`
+    ).join("");
+
+    fsDotsContainer.querySelectorAll(".fs-dot").forEach(dot => {
+      dot.addEventListener("click", () => {
+        goToSlide(parseInt(dot.dataset.target, 10));
+      });
+    });
+  }
 
   function goToSlide(n) {
     if (n < 1 || n > total) return;
@@ -56,10 +129,17 @@ function setupSlideDeck() {
     if (countDisplay) countDisplay.textContent = cur;
     if (prevBtn) prevBtn.disabled = cur === 1;
     if (nextBtn) nextBtn.disabled = cur === total;
+
+    // Sync fullscreen dots
+    document.querySelectorAll(".fs-dot").forEach((dot, idx) => {
+      dot.classList.toggle("active", idx + 1 === cur);
+    });
   }
 
   prevBtn?.addEventListener("click", () => goToSlide(cur - 1));
   nextBtn?.addEventListener("click", () => goToSlide(cur + 1));
+  fsPrevBtn?.addEventListener("click", () => goToSlide(cur - 1));
+  fsNextBtn?.addEventListener("click", () => goToSlide(cur + 1));
 
   chipBtns.forEach(c => {
     c.addEventListener("click", () => {
@@ -69,10 +149,63 @@ function setupSlideDeck() {
 
   // Keyboard navigation
   document.addEventListener("keydown", (e) => {
-    const deckPane = document.getElementById("sec-presentation-deck");
-    if (!deckPane || !deckPane.classList.contains("active")) return;
-    if (e.key === "ArrowLeft") goToSlide(cur - 1);
-    if (e.key === "ArrowRight") goToSlide(cur + 1);
+    // Check if deck is active or fullscreen
+    const isFullscreen = deckContainer?.classList.contains("fullscreen-active");
+    const isDeckTab = document.getElementById("sec-presentation-deck")?.classList.contains("active");
+
+    if (!isFullscreen && !isDeckTab) return;
+
+    if (e.key === "ArrowLeft" || e.key === "PageUp") {
+      goToSlide(cur - 1);
+    } else if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
+      e.preventDefault();
+      goToSlide(cur + 1);
+    } else if (e.key === "f" || e.key === "F") {
+      toggleFullscreen();
+    } else if (e.key === "Escape" && isFullscreen) {
+      exitFullscreen();
+    }
+  });
+
+  // Fullscreen Logic
+  function toggleFullscreen() {
+    if (!deckContainer) return;
+    if (deckContainer.classList.contains("fullscreen-active")) {
+      exitFullscreen();
+    } else {
+      enterFullscreen();
+    }
+  }
+
+  function enterFullscreen() {
+    if (!deckContainer) return;
+    deckContainer.classList.add("fullscreen-active");
+    if (btnFullscreen) {
+      btnFullscreen.innerHTML = `<i class="fa-solid fa-compress"></i> Exit (Esc)`;
+    }
+    if (deckContainer.requestFullscreen) {
+      deckContainer.requestFullscreen().catch(() => {});
+    }
+  }
+
+  function exitFullscreen() {
+    if (!deckContainer) return;
+    deckContainer.classList.remove("fullscreen-active");
+    if (btnFullscreen) {
+      btnFullscreen.innerHTML = `<i class="fa-solid fa-expand"></i> Fullscreen`;
+    }
+    if (document.fullscreenElement && document.exitFullscreen) {
+      document.exitFullscreen().catch(() => {});
+    }
+  }
+
+  btnFullscreen?.addEventListener("click", toggleFullscreen);
+  fsExitBtn?.addEventListener("click", exitFullscreen);
+
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement && deckContainer?.classList.contains("fullscreen-active")) {
+      exitFullscreen();
+    }
   });
 
   // Toggle speaker notes
@@ -121,12 +254,16 @@ function setupSlideDeck() {
   goToSlide(1);
 }
 
-// Charts
+// ================= CHARTS =================
 function setupCharts() {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  const gridColor = isDark ? "#1e293b" : "#f1f5f9";
+  const textColor = isDark ? "#94a3b8" : "#64748b";
+
   // Chart 1: Realization
   const c1 = document.getElementById("farmerRealizationChart");
   if (c1) {
-    new Chart(c1, {
+    chartInstances.realization = new Chart(c1, {
       type: "bar",
       data: {
         labels: ["Mandi Gross", "Mandi Cuts (-20.4%)", "MANDI NET", "FPO Contract", "FPO Fee (-6.3%)", "FPO NET"],
@@ -141,8 +278,8 @@ function setupCharts() {
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          y: { grid: { color: "#f1f5f9" }, ticks: { callback: v => `₹${v}` } },
-          x: { grid: { display: false } }
+          y: { grid: { color: gridColor }, ticks: { color: textColor, callback: v => `₹${v}` } },
+          x: { grid: { display: false }, ticks: { color: textColor } }
         }
       }
     });
@@ -151,7 +288,7 @@ function setupCharts() {
   // Chart 2: Buyer Mix
   const c2 = document.getElementById("buyerSegmentChart");
   if (c2) {
-    new Chart(c2, {
+    chartInstances.buyer = new Chart(c2, {
       type: "doughnut",
       data: {
         labels: ["Modern Retail / Q-Com (45%)", "HoReCa (35%)", "Agro-Processors (20%)"],
@@ -159,13 +296,13 @@ function setupCharts() {
           data: [45, 35, 20],
           backgroundColor: ["#059669", "#2563eb", "#d97706"],
           borderWidth: 2,
-          borderColor: "#ffffff"
+          borderColor: isDark ? "#0f172a" : "#ffffff"
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } },
+        plugins: { legend: { position: "bottom", labels: { color: textColor, font: { size: 11 } } } },
         cutout: "65%"
       }
     });
@@ -174,7 +311,7 @@ function setupCharts() {
   // Chart 3: Scaling
   const c3 = document.getElementById("scalingTrajectoryChart");
   if (c3) {
-    new Chart(c3, {
+    chartInstances.scaling = new Chart(c3, {
       type: "line",
       data: {
         labels: ["D1", "D15", "D30 (M1)", "D45", "D60 (M2)", "D75", "D90 (M3)"],
@@ -202,10 +339,10 @@ function setupCharts() {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { position: "bottom" } },
+        plugins: { legend: { position: "bottom", labels: { color: textColor } } },
         scales: {
-          y: { type: "linear", position: "left", grid: { color: "#f1f5f9" } },
-          y1: { type: "linear", position: "right", grid: { drawOnChartArea: false } }
+          y: { type: "linear", position: "left", grid: { color: gridColor }, ticks: { color: textColor } },
+          y1: { type: "linear", position: "right", grid: { drawOnChartArea: false }, ticks: { color: textColor } }
         }
       }
     });
@@ -214,7 +351,7 @@ function setupCharts() {
   // Chart 4: Quality Grading
   const c4 = document.getElementById("gradingDistributionChart");
   if (c4) {
-    new Chart(c4, {
+    chartInstances.grading = new Chart(c4, {
       type: "pie",
       data: {
         labels: ["Grade A (Supermarket - 60%)", "Grade B (HoReCa - 30%)", "Grade C (Processing - 10%)"],
@@ -222,19 +359,19 @@ function setupCharts() {
           data: [60, 30, 10],
           backgroundColor: ["#10b981", "#f59e0b", "#6366f1"],
           borderWidth: 2,
-          borderColor: "#ffffff"
+          borderColor: isDark ? "#0f172a" : "#ffffff"
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } }
+        plugins: { legend: { position: "bottom", labels: { color: textColor, font: { size: 11 } } } }
       }
     });
   }
 }
 
-// Financial Calculator
+// ================= FINANCIAL CALCULATOR =================
 function setupCalculator() {
   const iLots = document.getElementById("inputLots");
   const iBatch = document.getElementById("inputBatchSize");
@@ -281,7 +418,7 @@ function setupCalculator() {
   calc();
 }
 
-// Report Chapters
+// ================= REPORT CHAPTERS =================
 function setupReportChapters() {
   const chBtns = document.querySelectorAll(".ch-btn");
   chBtns.forEach(btn => {
