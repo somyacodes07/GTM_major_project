@@ -7,13 +7,22 @@
 
 ---
 
-## 📌 Project Overview
+## 🌐 Live GitHub Pages Deployments
 
-This repository provides the complete Go-to-Market strategy, customer operations architecture, and working digital prototype for Case Study No. 51.
+* 🚀 **Master Launchpad:** [https://somyacodes07.github.io/GTM_major_project/](https://somyacodes07.github.io/GTM_major_project/)
+* 📱 **Interactive Demo Prototype:** [https://somyacodes07.github.io/GTM_major_project/demo/](https://somyacodes07.github.io/GTM_major_project/demo/)
+* 🔬 **Research & 6-Slide Presentation Deck:** [https://somyacodes07.github.io/GTM_major_project/research/](https://somyacodes07.github.io/GTM_major_project/research/)
+* 💻 **GitHub Repository:** [https://github.com/somyacodes07/GTM_major_project](https://github.com/somyacodes07/GTM_major_project)
 
-By replacing traditional "sight-unseen" distress sales at local APMC mandis with a **pre-harvest verified photo catalogue**, the FPO bridges the information gap between 180 smallholder farmers and institutional B2B buyers (modern retail, quick commerce, HoReCa, and agro-processors).
+---
 
-### Key Metrics:
+## 📌 Executive Summary
+
+This project delivers a complete Go-to-Market (GTM) strategy, customer operations architecture, and working digital prototype for an FPO representing **180 smallholder farmers** handling **40 weekly catalogue lots (~72 Metric Tonnes / ₹15.84 Lakhs GMV per week)**.
+
+By replacing traditional "sight-unseen" distress sales at local APMC mandis with a **pre-harvest verified photo catalogue**, the FPO bridges the information gap between farm gates and institutional B2B buyers (modern retail, quick commerce, HoReCa, and agro-processors).
+
+### Key Empirical Results:
 * **Farmer Payout Realization:** **+25.8% net cash increase (+₹451.75 per Quintal)** over APMC mandi middlemen.
 * **Annual Economic Value Injected:** **₹1.64 Crores** distributed directly across 180 member households.
 * **Monthly Operating Volume:** **₹66.52 Lakhs GMV (~302.4 MT)** across 40 weekly lots.
@@ -22,9 +31,43 @@ By replacing traditional "sight-unseen" distress sales at local APMC mandis with
 
 ---
 
-## 📂 Repository Structure
+## 💰 How We Earn as a Company (Monetization & Unit Economics)
 
-Both websites are completely static with zero build steps or dependencies, ready to be served immediately by GitHub Pages:
+We operate as a high-volume, tech-enabled agribusiness platform. Rather than holding inventory risk, we monetize the **transaction clearance, quality assurance, and milk-run logistics consolidation**:
+
+```
+========================================================================================
+                          MONTHLY REVENUE & PROFIT WATERFALL
+========================================================================================
+  Monthly Gross Merchandise Value (GMV) @ 40 Lots/Wk:          ₹66,52,800 (~₹66.5 Lakhs)
+----------------------------------------------------------------------------------------
+  1. Catalogue Facilitation & Trade Commission (3.5%):          ₹2,32,848 / month
+  2. Digital Quality Audit & Listing Fee (₹50 / lot):              ₹8,400 / month
+  3. Consolidated Logistics & Crating Surcharge (1.0%):           ₹66,528 / month
+----------------------------------------------------------------------------------------
+  TOTAL MONTHLY GROSS REVENUE:                                  ₹3,07,776 / month (~₹3.08L)
+----------------------------------------------------------------------------------------
+  Less Monthly Operational OPEX:                               -₹1,02,632 / month
+    • 2 Village Field Scouts (@ ₹18,000):        ₹36,000
+    • FPO Operations & Catalog Manager:          ₹28,000
+    • WhatsApp Cloud API & Hosting:               ₹5,500
+    • Quality Testing Kits & Calibration:         ₹4,500
+    • Reusable HDPE Crate Pool Maintenance:      ₹12,000
+    • Spoilage & Transit Buffer (0.25% GMV):     ₹16,632
+----------------------------------------------------------------------------------------
+  NET MONTHLY COMPANY SURPLUS (PROFIT):                         ₹2,05,144 / month (~₹2.05L)
+  ANNUALIZED NET RETAINED PROFIT:                              ₹24,61,728 / year (~₹24.6L)
+========================================================================================
+```
+
+### Why Both Sides Happily Pay:
+1. **B2B Buyers (Modern Retail & HoReCa):** Traditional mandis charge 8–12% in hidden broker commissions, unofficial cuts (*kata chhoot*), plus heavy search costs. Our 3.5% fee is **5% to 8% cheaper** than traditional mandi sourcing, while delivering produce that is **24–36 hours fresher with 0% visual fraud**.
+2. **Farmer Members (180 Smallholders):** Middlemen shave 20–25% off farmers' produce value. In our model, farmers pay a modest service fee but take home **+₹451.75 more per quintal (+25.8% net cash increase)** with guaranteed T+24h bank settlement.
+3. **Scale Monetization (Phase 2):** Input supply bulk-purchasing discounts (seeds, fertilizers at 10% margin), pre-harvest micro-working capital financing via partner NBFCs, and ONDC transaction routing fees.
+
+---
+
+## 📂 Repository Structure
 
 ```
 GTM_major_project/
@@ -82,28 +125,21 @@ The dedicated external research website containing all empirical research, analy
 | **0:00 – 2:30** | `research/index.html` *(Slide 1)* | **The Mandi Squeeze:** Introduce 180 farmers harvesting blind. Middlemen extract 20%+ in cuts; explain why pre-harvest visual cataloguing solves "sight-unseen" risk. |
 | **2:30 – 5:00** | `research/index.html` *(Slides 2 & 3)* | **Customer Targeting & Operating Flow:** Show the 3 buyer tiers (Retail 45%, HoReCa 35%, Processors 20%). Walk through the 5-stage operating flow. |
 | **5:00 – 9:30** | `demo/index.html` *(Live Prototype)* | **Live Demonstration:**<br>1. Filter 40 lots by *Grade A* and *24h harvest*.<br>2. Click *Specs* on `LOT-TOM-01` to show calibrated cross-section and AGMARK specs.<br>3. Click *Pre-Book* and show *WhatsApp RFQ*.<br>4. Switch to *Farmer Submission*, click *Auto-Fill Sample Lot*, and submit.<br>5. Switch to *Quality Desk* and click *Approve & Publish* to watch the lot go live. |
-| **9:30 – 12:00** | `research/index.html` *(Calculator)* | **Unit Economics:** Move the sliders on the Financial Calculator to prove financial viability (₹66.5L monthly GMV, ₹2.05L net surplus, +₹451/Qtl farmer uplift). |
+| **9:30 – 12:00** | `research/index.html` *(Calculator)* | **Unit Economics & Earnings:** Move the sliders on the Financial Calculator to show how we earn ₹3.08L gross revenue, ₹2.05L net profit/month, while farmers earn +₹451/Qtl extra. |
 | **12:00 – 15:00** | `research/index.html` *(SWOT & Risks)* | **Risk Mitigation & Conclusion:** Address the 5 practical mitigations (calibrated strips against photo drift, HDPE crates against transit bruising, escrow against buyer defaults). |
 
 ---
 
-## 🚀 1-Click Deployment to GitHub Pages
+## 🚀 GitHub Pages Setup
 
-1. Push this repository to GitHub:
-   ```bash
-   git remote add origin https://github.com/<your-username>/<repo-name>.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-2. Enable **GitHub Pages**:
-   - In your GitHub repo, go to **Settings** ➔ **Pages**.
+1. In your GitHub repository [https://github.com/somyacodes07/GTM_major_project](https://github.com/somyacodes07/GTM_major_project):
+   - Go to **Settings** ➔ **Pages** (in the left sidebar).
    - Under **Build and deployment** ➔ **Source**, select **Deploy from a branch**.
-   - Select Branch: `main` and Folder: `/(root)`.
+   - Set Branch to `main` and folder to `/(root)`.
    - Click **Save**.
 
-Your project will be live in ~60 seconds at:  
-`https://<your-username>.github.io/<repo-name>/`
+Your live website is published at:  
+👉 **[https://somyacodes07.github.io/GTM_major_project/](https://somyacodes07.github.io/GTM_major_project/)**
 
 ---
 *Created for ITM Skills University — School of Future Tech | Go-to-Market & Customer Operations.*
