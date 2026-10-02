@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KISAN-SEVA FPO • Farm Produce Photo Catalogue Prototype</title>
+  <meta name="description" content="Interactive prototype for Case Study 51: Farm Produce Photo Catalogue connecting 180 smallholder farmers with institutional B2B buyers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside aria-label="Announcement" class="announcement-bar">
+    <div class="container bar-content">
+      <span class="badge-live"><span class="pulse-dot"></span> LIVE CATALOGUE CYCLE #42</span>
+      <span>Aggregating 40 Harvest Batches from 180 Registered Farmers across 3 Village Hubs</span>
+      <div class="bar-links">
+        <a href="../research/index.html" class="nav-pill" target="_blank"><i class="fa-solid fa-book-open"></i> View Research & Business Report</a>
+        <a href="../index.html" class="nav-pill"><i class="fa-solid fa-arrow-left"></i> Master Hub</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header">
+    <div class="container header-container">
+      <div class="brand">
+        <div class="brand-logo">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="brand-text">
+          <h1>KISAN-SEVA <span>FPO</span></h1>
+          <p>Verified Farm Produce Photo Catalogue • 180 Member Smallholders</p>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" id="appTabs" aria-label="Main Prototype Views">
+        <button class="tab-btn active" data-tab="buyer-catalog">
+          <i class="fa-solid fa-store"></i> Buyer Catalogue <span class="badge-count" id="catalogCountBadge">40</span>
+        </button>
+        <button class="tab-btn" data-tab="farmer-submit">
+          <i class="fa-solid fa-camera"></i> Farmer Submission
+        </button>
+        <button class="tab-btn" data-tab="admin-qc">
+          <i class="fa-solid fa-shield-check"></i> FPO Quality Verification <span class="badge-pending" id="pendingCountBadge">3</span>
+        </button>
+        <button class="tab-btn" data-tab="orders-escrow">
+          <i class="fa-solid fa-truck-ramp-box"></i> Bookings & Escrow <span class="badge-count" id="ordersCountBadge">6</span>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-guide" id="toggleDemoGuide" title="Presentation Guide for 5-15 min demo">
+          <i class="fa-solid fa-chalkboard-user"></i> Presenter Guide
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive Presentation Mode Floating Drawer -->
+  <aside class="presenter-drawer" id="presenterDrawer">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <i class="fa-solid fa-microphone-lines"></i>
+        <h4>5-to-15 Minute Presentation Guide</h4>
+      </div>
+      <button class="btn-close-drawer" id="closePresenterDrawer">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="demo-step active-step" data-target="buyer-catalog">
+        <span class="step-num">Step 1 (2 Mins)</span>
+        <h5>Show Buyer Catalogue</h5>
+        <p>Demonstrate how B2B procurement managers view 40 weekly listings 72h pre-harvest with Grade badges (A/B/C), verified photos, harvest countdown, and farmgate pricing.</p>
+      </div>
+      <div class="demo-step" data-target="buyer-catalog">
+        <span class="step-num">Step 2 (2 Mins)</span>
+        <h5>Simulate Pre-Harvest Booking & WhatsApp RFQ</h5>
+        <p>Click "Pre-Book Batch" on any lot. Show how the digital purchase order locks price and generates instant WhatsApp order notification.</p>
+      </div>
+      <div class="demo-step" data-target="farmer-submit">
+        <span class="step-num">Step 3 (3 Mins)</span>
+        <h5>Demonstrate Farmer Photo Submission</h5>
+        <p>Switch to Farmer Submission. Show the 3-photo standardization framework with calibration card, crop details, and batch logging.</p>
+      </div>
+      <div class="demo-step" data-target="admin-qc">
+        <span class="step-num">Step 4 (3 Mins)</span>
+        <h5>FPO Quality Assurance & Data Accuracy Gate</h5>
+        <p>Show the FPO Admin dashboard. Explain how scouts inspect photos, assign AGMARK grades, and approve lots to guarantee >96% information accuracy.</p>
+      </div>
+      <div class="demo-step" data-target="orders-escrow">
+        <span class="step-num">Step 5 (2 Mins)</span>
+        <h5>Supply Chain Dispatch & T+24h UPI Settlement</h5>
+        <p>Show the digital Goods Received Note (GRN) and automated T+24h bank settlement guaranteeing farmers receive +25.8% more than APMC mandis.</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Application Body -->
+  <main class="main-content container">
+
+    <!-- ==================== TAB 1: BUYER CATALOGUE ==================== -->
+    <section class="tab-pane active" id="buyer-catalog">
+      <!-- Search, Stats & Filter Controls -->
+      <div class="catalogue-controls-card">
+        <div class="stats-ribbon">
+          <div class="stat-item">
+            <span class="stat-label">Active Listings</span>
+            <span class="stat-value" id="statActiveListings">40 Lots</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Total Volume Available</span>
+            <span class="stat-value text-emerald">72.4 MT</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Harvest Window</span>
+            <span class="stat-value">Next 24 to 72 Hours</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">FPO Pre-Screening</span>
+            <span class="stat-value text-gold"><i class="fa-solid fa-circle-check"></i> 100% Inspected</span>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="catalogueSearch" placeholder="Search crop (e.g. Tomato, Onion, Capsicum), farmer or village...">
+          </div>
+
+          <div class="filter-groups">
+            <div class="select-wrapper">
+              <label for="categoryFilter"><i class="fa-solid fa-filter"></i> Category:</label>
+              <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="Vegetable">Vegetables (Solanaceous & Greens)</option>
+                <option value="Bulb & Root">Bulbs & Tubers (Onion, Potato)</option>
+                <option value="Fruit">Commercial Fruits</option>
+                <option value="Commercial">Spices & Flowers</option>
+              </select>
+            </div>
+
+            <div class="select-wrapper">
+              <label for="gradeFilter"><i class="fa-solid fa-award"></i> Grade:</label>
+              <select id="gradeFilter">
+                <option value="all">All Quality Grades</option>
+                <option value="Grade A">Grade A (Modern Retail / Premium)</option>
+                <option value="Grade B">Grade B (HoReCa / Cloud Kitchens)</option>
+                <option value="Grade C">Grade C (Agro-Processing)</option>
+              </select>
+            </div>
+
+            <div class="select-wrapper">
+              <label for="harvestFilter"><i class="fa-solid fa-clock"></i> Harvest Window:</label>
+              <select id="harvestFilter">
+                <option value="all">All Harvest Dates</option>
+                <option value="today">Harvesting Today</option>
+                <option value="24h">Harvesting within 24 Hours</option>
+                <option value="48h">Harvesting within 48-72 Hours</option>
+              </select>
+            </div>
+
+            <button class="btn-reset" id="resetFiltersBtn" title="Reset all filters">
+              <i class="fa-solid fa-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalogue Produce Grid -->
+      <div class="catalogue-grid" id="produceGrid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: FARMER PHOTO SUBMISSION ==================== -->
+    <section class="tab-pane" id="farmer-submit">
+      <div class="form-layout">
+        <div class="form-card">
+          <div class="form-card-header">
+            <div class="header-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+            <div>
+              <h3>Farmer Harvest Listing & Photo Submission</h3>
+              <p>Log pre-harvest crop data 72 hours before cutting to secure institutional advance orders.</p>
+            </div>
+          </div>
+
+          <form id="farmerSubmitForm">
+            <div class="form-grid">
+              <div class="input-group">
+                <label for="farmerSelect">Registered Farmer Member (180 Total) *</label>
+                <select id="farmerSelect" required>
+                  <option value="">-- Select Farmer Member --</option>
+                  <option value="Ramesh Patil (Member #014 - Shirasgaon)">Ramesh Patil (Member #014 - Shirasgaon Cluster)</option>
+                  <option value="Sunita Bai Deshmukh (Member #042 - Pimpalgaon)">Sunita Bai Deshmukh (Member #042 - Pimpalgaon)</option>
+                  <option value="Balasaheb Shinde (Member #078 - Dindori)">Balasaheb Shinde (Member #078 - Dindori)</option>
+                  <option value="Kisanrao More (Member #103 - Ozar)">Kisanrao More (Member #103 - Ozar)</option>
+                  <option value="Anand Thorat (Member #144 - Chandwad)">Anand Thorat (Member #144 - Chandwad)</option>
+                  <option value="Pooja Gavit (Member #167 - Niphad)">Pooja Gavit (Member #167 - Niphad)</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="cropSelect">Crop Commodity *</label>
+                <select id="cropSelect" required>
+                  <option value="">-- Select Crop --</option>
+                  <option value="Tomato (Abhinav Hybrid)">Tomato (Abhinav Hybrid)</option>
+                  <option value="Red Onion (Nashik Special)">Red Onion (Nashik Special)</option>
+                  <option value="Green Capsicum (Indam 98)">Green Capsicum (Indam 98)</option>
+                  <option value="Green Chilli (G-4)">Green Chilli (G-4)</option>
+                  <option value="Pomegranate (Bhagwa)">Pomegranate (Bhagwa)</option>
+                  <option value="Potato (Kufri Pukhraj)">Potato (Kufri Pukhraj)</option>
+                  <option value="Marigold Flower (Orange Gold)">Marigold Flower (Orange Gold)</option>
+                  <option value="G9 Banana (Grand Naine)">G9 Banana (Grand Naine)</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="quantityInput">Estimated Harvest Quantity (Quintals) *</label>
+                <div class="unit-input">
+                  <input type="number" id="quantityInput" min="5" max="100" placeholder="e.g. 18" required>
+                  <span class="unit-tag">Quintals (100 kg)</span>
+                </div>
+                <small class="helper-text">1 Quintal = 100 kg. Expected average lot size: 15 to 25 quintals.</small>
+              </div>
+
+              <div class="input-group">
+                <label for="harvestDateInput">Scheduled Harvest Date *</label>
+                <input type="date" id="harvestDateInput" required>
+                <small class="helper-text">Must be 24 to 72 hours ahead of current date.</small>
+              </div>
+
+              <div class="input-group">
+                <label for="targetGradeSelect">Claimed Harvest Grade *</label>
+                <select id="targetGradeSelect" required>
+                  <option value="Grade A">Grade A (Uniform color >90%, zero blemish, supermarket retail)</option>
+                  <option value="Grade B">Grade B (Minor color variance, standard culinary quality, HoReCa)</option>
+                  <option value="Grade C">Grade C (Slight size variance, high pulp content, agro-processing)</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="expectedPriceInput">Expected Farmgate Floor Price (₹ / Quintal) *</label>
+                <div class="unit-input">
+                  <span class="unit-prefix">₹</span>
+                  <input type="number" id="expectedPriceInput" min="800" max="6000" placeholder="e.g. 2350" required>
+                  <span class="unit-tag">/ Quintal</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standardized 3-Photo Upload Protocol -->
+            <div class="upload-section">
+              <div class="upload-header">
+                <h4><i class="fa-solid fa-camera-rotate"></i> Standardized 3-Photo Upload Protocol</h4>
+                <span class="badge-req">Mandatory for QC Approval</span>
+              </div>
+              <p class="upload-desc">To prevent "sight-unseen" buyer rejections, each listing requires 3 standardized photographs taken with the FPO calibrated reference card.</p>
+
+              <div class="photo-dropzones">
+                <div class="dropzone" id="dropzone1">
+                  <div class="dropzone-preview" id="preview1">
+                    <i class="fa-solid fa-seedling"></i>
+                    <span>Photo 1: Crop Canopy</span>
+                    <small>Maturity & field health</small>
+                  </div>
+                  <input type="file" accept="image/*" class="file-input" id="file1">
+                </div>
+
+                <div class="dropzone" id="dropzone2">
+                  <div class="dropzone-preview" id="preview2">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>Photo 2: Sample Crate</span>
+                    <small>Color & size uniformity</small>
+                  </div>
+                  <input type="file" accept="image/*" class="file-input" id="file2">
+                </div>
+
+                <div class="dropzone" id="dropzone3">
+                  <div class="dropzone-preview" id="preview3">
+                    <i class="fa-solid fa-ruler-combined"></i>
+                    <span>Photo 3: Calibrated Cross-Section</span>
+                    <small>With official scale strip</small>
+                  </div>
+                  <input type="file" accept="image/*" class="file-input" id="file3">
+                </div>
+              </div>
+
+              <!-- Quick Demo Image Prefill Button -->
+              <div class="sample-image-picker">
+                <span>Or load sample field photos for quick demonstration:</span>
+                <button type="button" class="btn-pill-sample" id="loadSamplePhotosBtn">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Populate Standard Photos & Data
+                </button>
+              </div>
+            </div>
+
+            <!-- Quality Check Protocol Checklist -->
+            <div class="qc-checklist">
+              <h5><i class="fa-solid fa-list-check"></i> Field Scout Verification Checklist</h5>
+              <label class="check-item">
+                <input type="checkbox" id="chkScale" required>
+                <span>FPO official color & size calibration scale was included in Photo 3.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" id="chkMoisture" required>
+                <span>Produce moisture & firmness verified using digital refractometer/tester.</span>
+              </label>
+              <label class="check-item">
+                <input type="checkbox" id="chkAcreage" required>
+                <span>Harvest quantity is verified against registered member land acreage (prevents trader pass-through).</span>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary-large" id="submitListingBtn">
+                <i class="fa-solid fa-paper-plane"></i> Submit to FPO Quality Lead for Audit
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sidebar Guidelines -->
+        <div class="form-guidelines">
+          <div class="guide-box">
+            <h4><i class="fa-solid fa-circle-info"></i> Why Standardized Photos Matter</h4>
+            <p>Traditional mandi brokers exploit "sight-unseen" doubts to impose a 15–30% price cut on farmers. High-resolution calibrated photos allow corporate buyers to confirm produce specs 72 hours before harvest.</p>
+          </div>
+
+          <div class="guide-box">
+            <h4><i class="fa-solid fa-scale-balanced"></i> AGMARK Grading Benchmarks</h4>
+            <ul>
+              <li><strong>Grade A:</strong> Maximum 2% superficial defect, uniform size diameter, optimal sugar/firmness balance.</li>
+              <li><strong>Grade B:</strong> 2% to 6% cosmetic surface blemishes, completely sound internal pulp.</li>
+              <li><strong>Grade C:</strong> Cosmetic variation / non-uniform sizes, 100% edible pulp for purees & processing.</li>
+            </ul>
+          </div>
+
+          <div class="guide-box highlight">
+            <h4><i class="fa-solid fa-bolt"></i> Weekly Ingestion SLA</h4>
+            <p>The FPO operations team reviews all submissions within <strong>4 hours</strong>. Approved lots automatically broadcast to 120+ verified B2B buyers every Monday & Thursday at 7:00 AM.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: FPO QUALITY AUDIT & ADMIN HUB ==================== -->
+    <section class="tab-pane" id="admin-qc">
+      <div class="admin-header-card">
+        <div class="admin-title">
+          <div class="admin-avatar"><i class="fa-solid fa-user-check"></i></div>
+          <div>
+            <h3>FPO Quality Lead & Data Verification Desk</h3>
+            <p>Enforcing information accuracy across all 40 weekly catalogue entries to eliminate buyer rejection risks.</p>
+          </div>
+        </div>
+        <div class="admin-stats">
+          <div class="admin-stat">
+            <span class="num" id="pendingReviewCount">3</span>
+            <span class="lbl">Pending Review</span>
+          </div>
+          <div class="admin-stat">
+            <span class="num text-emerald" id="approvedTodayCount">37</span>
+            <span class="lbl">Live in Catalogue</span>
+          </div>
+          <div class="admin-stat">
+            <span class="num text-gold">97.4%</span>
+            <span class="lbl">Historical Accuracy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Verification Table / Cards -->
+      <div class="review-container">
+        <div class="review-list-header">
+          <h4>Submissions Awaiting Quality Sign-Off</h4>
+          <span class="sub-caption">Each lot must be verified against registered acreage, photographic clarity, and AGMARK tolerances before going live.</span>
+        </div>
+
+        <div class="pending-lots-grid" id="pendingLotsContainer">
+          <!-- Populated dynamically via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: BOOKINGS & ESCROW SETTLEMENT ==================== -->
+    <section class="tab-pane" id="orders-escrow">
+      <div class="orders-header-card">
+        <div class="orders-title">
+          <div class="orders-avatar"><i class="fa-solid fa-handshake"></i></div>
+          <div>
+            <h3>Institutional Pre-Bookings & T+24h Settlement Ledger</h3>
+            <p>Direct farmgate-to-hub supply chain tracking with transparent financial reconciliation.</p>
+          </div>
+        </div>
+        <div class="orders-summary-metrics">
+          <div class="summary-metric">
+            <span class="val">₹4,82,600</span>
+            <span class="lbl">Escrow Held Today</span>
+          </div>
+          <div class="summary-metric">
+            <span class="val text-emerald">₹15,84,000</span>
+            <span class="lbl">Weekly GMV Volume</span>
+          </div>
+          <div class="summary-metric">
+            <span class="val text-blue">100%</span>
+            <span class="lbl">T+24h Payout Track</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-header">
+          <h4>Active Purchase Orders & Pre-Harvest Allocations</h4>
+          <button class="btn-refresh" id="refreshOrdersBtn"><i class="fa-solid fa-arrows-rotate"></i> Refresh Ledger</button>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table" id="ordersTable">
+            <thead>
+              <tr>
+                <th>Order / Batch ID</th>
+                <th>Buyer Organization</th>
+                <th>Crop & Grade</th>
+                <th>Volume</th>
+                <th>Locked Farmgate Price</th>
+                <th>Total Value</th>
+                <th>Supply Status</th>
+                <th>Farmer Settlement</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal 1: Buyer Pre-Booking & RFQ Modal -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-basket-shopping text-emerald"></i>
+          <h3 id="modalProduceTitle">Pre-Book Harvest Batch</h3>
+        </div>
+        <button class="modal-close" id="closeBookingModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-batch-preview" id="modalBatchPreview">
+          <!-- Populated dynamically -->
+        </div>
+
+        <form id="preBookingForm">
+          <div class="input-group">
+            <label for="buyerOrgInput">Buyer Organization / Company Name *</label>
+            <input type="text" id="buyerOrgInput" placeholder="e.g. FreshMart Hypermarkets Ltd. / Zepto Dark Store Hub #4" required>
+          </div>
+
+          <div class="input-group">
+            <label for="buyerContactInput">Procurement Manager Phone / WhatsApp *</label>
+            <input type="tel" id="buyerContactInput" placeholder="+91 98230 XXXXX" required>
+          </div>
+
+          <div class="form-row-2">
+            <div class="input-group">
+              <label for="orderQtyInput">Booking Quantity (Quintals) *</label>
+              <input type="number" id="orderQtyInput" min="5" required>
+            </div>
+            <div class="input-group">
+              <label for="deliveryHubSelect">Destination Hub *</label>
+              <select id="deliveryHubSelect" required>
+                <option value="Navi Mumbai Central DC">Navi Mumbai Central DC</option>
+                <option value="Pune Chakan Distribution Hub">Pune Chakan Distribution Hub</option>
+                <option value="Nashik Local Processing Center">Nashik Local Processing Center</option>
+                <option value="Thane Quick-Commerce Cluster">Thane Quick-Commerce Cluster</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="price-breakdown-box">
+            <div class="price-line">
+              <span>Farmgate Agreed Price:</span>
+              <span id="calcBasePrice">₹2,350 / Qtl</span>
+            </div>
+            <div class="price-line">
+              <span>FPO Facilitation & Crating (3.5% + Handling):</span>
+              <span id="calcFpoFee">₹105 / Qtl</span>
+            </div>
+            <div class="price-line total">
+              <span>Estimated Landed Total:</span>
+              <span class="text-emerald" id="calcTotalPrice">₹49,100</span>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn-whatsapp" id="btnSendWhatsappRfq">
+              <i class="fa-brands fa-whatsapp"></i> Generate WhatsApp RFQ Message
+            </button>
+            <button type="submit" class="btn-confirm-booking">
+              <i class="fa-solid fa-lock"></i> Lock Advance Booking & Issue PO
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Quality Spec Sheet & Full Photo Inspector -->
+  <div class="modal-overlay" id="specModal">
+    <div class="modal-dialog modal-large">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-certificate text-gold"></i>
+          <h3 id="specTitle">Lot Quality Certificate & Field Spec Sheet</h3>
+        </div>
+        <button class="modal-close" id="closeSpecModal">&times;</button>
+      </div>
+      <div class="modal-body" id="specModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: WhatsApp Share Simulator -->
+  <div class="modal-overlay" id="whatsappModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-brands fa-whatsapp text-emerald"></i>
+          <h3>WhatsApp Buyer Broadcast Simulation</h3>
+        </div>
+        <button class="modal-close" id="closeWhatsappModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="whatsapp-chat-bubble" id="whatsappMessageContent">
+          <!-- Dynamic message content -->
+        </div>
+        <p class="modal-note"><i class="fa-solid fa-circle-info"></i> In real operations, this rich card is delivered via the Meta WhatsApp Cloud API directly to 120+ registered procurement managers every Monday & Thursday at 7:00 AM.</p>
+        <div class="modal-actions">
+          <button class="btn-primary" id="copyWhatsappBtn"><i class="fa-solid fa-copy"></i> Copy Message Text</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Global Footer -->
+  <footer class="app-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <strong>KISAN-SEVA Farmer Producer Company Ltd.</strong>
+        <p>A B.Tech CSE (2026–30) Go-to-Market & Customer Operations Project • Case Study No. 51</p>
+      </div>
+      <div class="footer-right">
+        <a href="../research/index.html" class="footer-btn"><i class="fa-solid fa-file-invoice"></i> Research Portal & Business Report</a>
+        <a href="../index.html" class="footer-btn"><i class="fa-solid fa-house"></i> Master Hub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

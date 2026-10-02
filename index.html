@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Go-to-Market Project • Farm Produce Photo Catalogue (Case Study 51)</title>
+  <meta name="description" content="Master Project Hub for Case Study 51: Farm Produce Photo Catalogue. B.Tech CSE (2026-30) Go-to-Market & Customer Operations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #059669;
+      --primary-dark: #047857;
+      --primary-light: #10b981;
+      --dark: #090d16;
+      --dark-surface: #0f172a;
+      --slate: #334155;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--bg);
+      color: var(--slate);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Hero Section */
+    .hero-banner {
+      background: linear-gradient(135deg, #090d16 0%, #0f172a 60%, #064e3b 100%);
+      color: white;
+      padding: 3.5rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .academic-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      max-width: 780px;
+      margin-bottom: 2rem;
+      line-height: 1.55;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .metric-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    .metric-pill .lbl {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: block;
+    }
+
+    .metric-pill .num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    /* Main Hub Portals Grid */
+    .portal-section {
+      padding: 3rem 0;
+    }
+
+    .section-headline {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-headline h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+    }
+
+    .section-headline p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0.35rem auto 0;
+    }
+
+    .portals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 800px) {
+      .portals-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .portal-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .portal-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+      border-color: #cbd5e1;
+    }
+
+    .card-banner {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner-demo {
+      background: linear-gradient(135deg, #065f46 0%, #059669 100%);
+    }
+
+    .banner-research {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+    }
+
+    .banner-icon {
+      font-size: 4rem;
+      color: rgba(255, 255, 255, 0.2);
+      position: absolute;
+      right: 20px;
+      bottom: -10px;
+    }
+
+    .banner-text-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(0, 0, 0, 0.35);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+
+    .card-content {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-content p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .feature-list li {
+      font-size: 0.84rem;
+      color: var(--slate);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature-list li i {
+      color: var(--primary);
+    }
+
+    .btn-launch {
+      margin-top: auto;
+      text-decoration: none;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .btn-launch-demo {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+    }
+
+    .btn-launch-demo:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-launch-research {
+      background: #4338ca;
+      color: white;
+      box-shadow: 0 4px 12px rgba(67, 56, 202, 0.25);
+    }
+
+    .btn-launch-research:hover {
+      background: #3730a3;
+    }
+
+    /* Deliverables & Presentation Guide Section */
+    .guide-section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.25rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .guide-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .guide-icon {
+      width: 48px;
+      height: 48px;
+      background: #ecfdf5;
+      color: var(--primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .guide-header h3 {
+      font-size: 1.25rem;
+      color: var(--dark);
+      font-weight: 800;
+    }
+
+    .guide-header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .presentation-flow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .p-step-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .p-time {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .p-step-box h4 {
+      font-size: 0.9rem;
+      color: var(--dark);
+      margin-bottom: 0.35rem;
+    }
+
+    .p-step-box p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* Markdown File Links */
+    .docs-shelf {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+      padding-top: 1rem;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .doc-link-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--slate);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .doc-link-card:hover {
+      background: #e2e8f0;
+      color: var(--dark);
+    }
+
+    /* Footer */
+    .hub-footer {
+      background: #090d16;
+      color: #94a3b8;
+      padding: 2rem 0;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .hub-footer strong {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Header -->
+  <section class="hero-banner">
+    <div class="container">
+      <div class="academic-kicker">
+        <i class="fa-solid fa-graduation-cap"></i> ITM SKILLS UNIVERSITY • SCHOOL OF FUTURE TECH • B.TECH CSE (2026–30)
+      </div>
+      <h1 class="hero-title">Farm Produce <span>Photo Catalogue</span></h1>
+      <p class="hero-sub">
+        Go-to-Market & Customer Operations Case Study No. 51: Connecting 180 Smallholder Farmers to Institutional B2B Buyers via Weekly Verified Produce Cataloguing.
+      </p>
+
+      <div class="hero-metrics">
+        <div class="metric-pill">
+          <span class="lbl">FPO Member Base</span>
+          <span class="num">180 Farmers</span>
+        </div>
+        <div class="metric-pill">
+          <span class="lbl">Weekly Volume</span>
+          <span class="num">40 Lots (72 MT)</span>
+        </div>
+        <div class="metric-pill">
+          <span class="lbl">Net Price Realization</span>
+          <span class="num" style="color: #34d399;">+25.8%</span>
+        </div>
+        <div class="metric-pill">
+          <span class="lbl">Monthly GMV</span>
+          <span class="num">₹66.5 Lakhs</span>
+        </div>
+        <div class="metric-pill">
+          <span class="lbl">Catalogue Accuracy</span>
+          <span class="num" style="color: #38bdf8;">> 96%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portals Navigation Section -->
+  <main class="container portal-section">
+    <div class="section-headline">
+      <h2>Project Deliverables & Portals</h2>
+      <p>Select either the live interactive prototype demo or the external research & executive documentation portal.</p>
+    </div>
+
+    <div class="portals-grid">
+      <!-- Portal 1: Demo Prototype -->
+      <article class="portal-card">
+        <div class="card-banner banner-demo">
+          <span class="banner-text-tag"><i class="fa-solid fa-desktop"></i> INTERACTIVE PROTOTYPE</span>
+          <i class="fa-solid fa-mobile-screen-button banner-icon"></i>
+        </div>
+        <div class="card-content">
+          <h3>Farm Produce Photo Catalogue Demo</h3>
+          <p>The interactive working prototype designed for a 5-to-15 minute live presentation. Demonstrates all 40 weekly listings, pre-harvest booking, farmer submission, and quality verification.</p>
+          <ul class="feature-list">
+            <li><i class="fa-solid fa-circle-check"></i> Explore 40 active weekly produce listings with search & filters</li>
+            <li><i class="fa-solid fa-circle-check"></i> Farmer photo submission with standardized reference scale check</li>
+            <li><i class="fa-solid fa-circle-check"></i> FPO Quality Verification Desk for audit & AGMARK grading</li>
+            <li><i class="fa-solid fa-circle-check"></i> Advance pre-booking, WhatsApp RFQ generator & T+24h settlement</li>
+            <li><i class="fa-solid fa-circle-check"></i> Built-in Presenter Guide drawer with step-by-step cues</li>
+          </ul>
+          <a href="demo/index.html" class="btn-launch btn-launch-demo">
+            <i class="fa-solid fa-play"></i> Launch Demo Prototype
+          </a>
+        </div>
+      </article>
+
+      <!-- Portal 2: Research & Documentation Portal -->
+      <article class="portal-card">
+        <div class="card-banner banner-research">
+          <span class="banner-text-tag"><i class="fa-solid fa-book-bookmark"></i> RESEARCH & ANALYTICS</span>
+          <i class="fa-solid fa-chart-line banner-icon"></i>
+        </div>
+        <div class="card-content">
+          <h3>GTM Research & Documentation Portal</h3>
+          <p>The comprehensive external documentation website containing the 4–5 page business report, interactive financial model, Business Model Canvas, SWOT matrix, and 6-slide deck.</p>
+          <ul class="feature-list">
+            <li><i class="fa-solid fa-circle-check"></i> Full 4–5 Page Business Report with printable PDF export</li>
+            <li><i class="fa-solid fa-circle-check"></i> Interactive Financial Model & ROI Calculator with real-time sliders</li>
+            <li><i class="fa-solid fa-circle-check"></i> 9-Box Business Model Canvas & Value Proposition Canvas (VPC)</li>
+            <li><i class="fa-solid fa-circle-check"></i> Supply Chain Flowchart, RACI matrix & AGMARK grading bands</li>
+            <li><i class="fa-solid fa-circle-check"></i> Interactive 6-Slide Executive Deck with speaker notes & timer</li>
+          </ul>
+          <a href="research/index.html" class="btn-launch btn-launch-research">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Research Portal
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Presentation Guide & Talking Points -->
+    <div class="guide-section">
+      <div class="guide-header">
+        <div class="guide-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <div>
+          <h3>5-to-15 Minute Presentation Guide & Demo Walkthrough</h3>
+          <p>Recommended sequence for presenting Case Study No. 51 to evaluators and professors.</p>
+        </div>
+      </div>
+
+      <div class="presentation-flow-grid">
+        <div class="p-step-box">
+          <span class="p-time">Minutes 0 – 3</span>
+          <h4>1. Problem & Context</h4>
+          <p>Introduce the 180-farmer collective, mandi intermediary exploitation (-25.8% haircut), and why pre-harvest visual cataloguing solves sight-unseen risk.</p>
+        </div>
+
+        <div class="p-step-box">
+          <span class="p-time">Minutes 3 – 6</span>
+          <h4>2. The 6-Slide Pitch</h4>
+          <p>Navigate to the Research Portal's 6-Slide Deck. Cover VPC alignment, 3 buyer tiers (Retail, HoReCa, Processors), and the 5-stage operating flow.</p>
+        </div>
+
+        <div class="p-step-box">
+          <span class="p-time">Minutes 6 – 11</span>
+          <h4>3. Live Prototype Demo</h4>
+          <p>Switch to the Demo. Show the 40 active lots, filter by Grade A, open a lot spec sheet, simulate a WhatsApp RFQ, and demonstrate farmer photo submission.</p>
+        </div>
+
+        <div class="p-step-box">
+          <span class="p-time">Minutes 11 – 15</span>
+          <h4>4. Financials & Q&A</h4>
+          <p>Demonstrate the Financial Calculator (₹66.5L monthly GMV, ₹2.05L net FPO surplus, +₹451/Qtl farmer uplift) and review SWOT risk mitigations.</p>
+        </div>
+      </div>
+
+      <!-- Markdown Deliverables Reference Shelf -->
+      <div class="docs-shelf">
+        <a href="BUSINESS_REPORT.md" class="doc-link-card" target="_blank">
+          <i class="fa-solid fa-file-lines text-emerald"></i> BUSINESS_REPORT.md
+        </a>
+        <a href="BUSINESS_MODEL_CANVAS.md" class="doc-link-card" target="_blank">
+          <i class="fa-solid fa-table-cells-large text-blue"></i> BUSINESS_MODEL_CANVAS.md
+        </a>
+        <a href="SUPPLY_CHAIN_FLOW.md" class="doc-link-card" target="_blank">
+          <i class="fa-solid fa-truck-fast text-gold"></i> SUPPLY_CHAIN_FLOW.md
+        </a>
+        <a href="PRESENTATION_6_SLIDES.md" class="doc-link-card" target="_blank">
+          <i class="fa-solid fa-tv text-purple"></i> PRESENTATION_6_SLIDES.md
+        </a>
+        <a href="README.md" class="doc-link-card" target="_blank">
+          <i class="fa-solid fa-circle-info text-dark"></i> README.md
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="hub-footer">
+    <div class="container">
+      <p><strong>ITM Skills University • School of Future Tech</strong></p>
+      <p>Go-to-Market & Customer Operations (Sprint I) • Case Study No. 51: Farm Produce Photo Catalogue</p>
+      <p style="margin-top: 0.35rem; font-size: 0.78rem;">Ready for deployment on GitHub Pages and Vercel.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
