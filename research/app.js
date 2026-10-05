@@ -162,9 +162,53 @@ function setupSlideDeck() {
       goToSlide(cur + 1);
     } else if (e.key === "f" || e.key === "F") {
       toggleFullscreen();
+    } else if (e.key === "v" || e.key === "V") {
+      toggleViewMode();
     } else if (e.key === "Escape" && isFullscreen) {
       exitFullscreen();
     }
+  });
+
+  // Dual Mode Toggle: Visual Canvas vs Card Breakdown
+  const btnModeVisual = document.getElementById("btnModeVisual");
+  const btnModeCards = document.getElementById("btnModeCards");
+
+  function setViewMode(mode) {
+    if (mode === "cards") {
+      deckContainer?.classList.add("mode-cards");
+      btnModeCards?.classList.add("active");
+      btnModeVisual?.classList.remove("active");
+    } else {
+      deckContainer?.classList.remove("mode-cards");
+      btnModeVisual?.classList.add("active");
+      btnModeCards?.classList.remove("active");
+    }
+  }
+
+  function toggleViewMode() {
+    if (deckContainer?.classList.contains("mode-cards")) {
+      setViewMode("visual");
+    } else {
+      setViewMode("cards");
+    }
+  }
+
+  btnModeVisual?.addEventListener("click", () => setViewMode("visual"));
+  btnModeCards?.addEventListener("click", () => setViewMode("cards"));
+
+  // Clicking on slide visual wrapper in standard view enters fullscreen; in fullscreen, it advances
+  document.querySelectorAll(".slide-visual-wrapper").forEach(wrapper => {
+    wrapper.addEventListener("click", () => {
+      if (deckContainer?.classList.contains("fullscreen-active")) {
+        if (cur < total) {
+          goToSlide(cur + 1);
+        } else {
+          goToSlide(1);
+        }
+      } else {
+        enterFullscreen();
+      }
+    });
   });
 
   // Fullscreen Logic

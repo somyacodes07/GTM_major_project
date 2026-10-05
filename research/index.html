@@ -118,7 +118,14 @@
             <button class="chip-slide" data-sl="6">6. 90-Day GTM</button>
           </div>
 
+          <!-- Mode Toggle: Visual Canvas vs Card Breakdown -->
+          <div class="deck-mode-pills">
+            <button class="btn-deck-mode active" id="btnModeVisual" title="Show official slide keynote canvas"><i class="fa-solid fa-image"></i> Slide Canvas</button>
+            <button class="btn-deck-mode" id="btnModeCards" title="Show structured card breakdown"><i class="fa-solid fa-layer-group"></i> Card Breakdown</button>
+          </div>
+
           <div class="deck-actions">
+            <a href="../KISAN-SEVA%20FPO%20Pitch.pdf" download="KISAN-SEVA_FPO_Pitch.pdf" class="btn-deck-pdf" title="Download Official Presentation PDF (20 MB)"><i class="fa-solid fa-file-pdf"></i> Pitch PDF</a>
             <button class="deck-nav-btn" id="prevSlideBtn" title="Previous Slide (←)"><i class="fa-solid fa-chevron-left"></i></button>
             <span class="slide-count"><strong id="currentSlideNum">1</strong> / 6</span>
             <button class="deck-nav-btn" id="nextSlideBtn" title="Next Slide (→)"><i class="fa-solid fa-chevron-right"></i></button>
@@ -135,43 +142,52 @@
 
           <!-- SLIDE 1: Problem vs Solution -->
           <div class="slide-view active" data-slide="1">
-            <div class="slide-top">
-              <span class="slide-tag">Slide 1 of 6 • Problem & Opportunity</span>
-              <h2>Eliminating the Mandi Squeeze: Digital Transformation for 180 Smallholders</h2>
-              <p>Moving from Blind Harvests & Distress Mandi Selling to 72h Pre-Harvest Digital Discovery</p>
+            <div class="slide-visual-wrapper" title="Click slide to view fullscreen">
+              <picture>
+                <source srcset="slides/slide_1.webp" type="image/webp">
+                <img src="slides/slide_1.jpg" alt="Slide 1: Eliminating the Mandi Squeeze" class="slide-visual-img" loading="eager">
+              </picture>
             </div>
 
-            <div class="slide-grid-2">
-              <div class="deck-card red-edge">
-                <div class="deck-card-header text-red">
-                  <i class="fa-solid fa-circle-xmark"></i> Traditional Mandi Friction
-                </div>
-                <div class="deck-stat-callout">
-                  <strong>-25.8% Value Lost to Middlemen</strong>
-                  <span>Extracted via commissions, subjective cuts & transit spoilage</span>
-                </div>
-                <ul class="deck-list">
-                  <li><strong>Blind Harvesting:</strong> Farmers harvest perishables with zero confirmed buyers.</li>
-                  <li><strong>Subjective Mandi Grading:</strong> Middlemen enforce arbitrary 15–30% haircuts.</li>
-                  <li><strong>Hidden Deductions:</strong> Unofficial weighment cuts (*kata chhoot* of 3–5%).</li>
-                  <li><strong>Transit Spoilage:</strong> Unventilated gunny sacks cause 16–22% transit damage.</li>
-                </ul>
+            <div class="slide-card-details">
+              <div class="slide-top">
+                <span class="slide-tag">Slide 1 of 6 • Problem & Opportunity</span>
+                <h2>Eliminating the Mandi Squeeze: Digital Transformation for 180 Smallholders</h2>
+                <p>Moving from Blind Harvests & Distress Mandi Selling to 72h Pre-Harvest Digital Discovery</p>
               </div>
 
-              <div class="deck-card emerald-edge">
-                <div class="deck-card-header text-emerald">
-                  <i class="fa-solid fa-circle-check"></i> FPO Photo Catalogue Solution
+              <div class="slide-grid-2">
+                <div class="deck-card red-edge">
+                  <div class="deck-card-header text-red">
+                    <i class="fa-solid fa-circle-xmark"></i> Traditional Mandi Friction
+                  </div>
+                  <div class="deck-stat-callout">
+                    <strong>-25.8% Value Lost to Middlemen</strong>
+                    <span>Extracted via commissions, subjective cuts & transit spoilage</span>
+                  </div>
+                  <ul class="deck-list">
+                    <li><strong>Blind Harvesting:</strong> Farmers harvest perishables with zero confirmed buyers.</li>
+                    <li><strong>Subjective Mandi Grading:</strong> Middlemen enforce arbitrary 15–30% haircuts.</li>
+                    <li><strong>Hidden Deductions:</strong> Unofficial weighment cuts (*kata chhoot* of 3–5%).</li>
+                    <li><strong>Transit Spoilage:</strong> Unventilated gunny sacks cause 16–22% transit damage.</li>
+                  </ul>
                 </div>
-                <div class="deck-stat-callout text-emerald">
-                  <strong>+₹451 / Quintal Net Uplift</strong>
-                  <span>+25.8% Net Cash Gain • Total Annual Member Uplift: ₹1.64 Crores</span>
+
+                <div class="deck-card emerald-edge">
+                  <div class="deck-card-header text-emerald">
+                    <i class="fa-solid fa-circle-check"></i> FPO Photo Catalogue Solution
+                  </div>
+                  <div class="deck-stat-callout text-emerald">
+                    <strong>+₹451 / Quintal Net Uplift</strong>
+                    <span>+25.8% Net Cash Gain • Total Annual Member Uplift: ₹1.64 Crores</span>
+                  </div>
+                  <ul class="deck-list">
+                    <li><strong>Pre-Harvest Listing:</strong> Weekly catalogue published 72h before cutting crop.</li>
+                    <li><strong>Verified Visual Proof:</strong> 3 calibrated photos eliminate sight-unseen doubts.</li>
+                    <li><strong>Advance Pre-Booking:</strong> Firm Purchase Orders & locked rates before harvest.</li>
+                    <li><strong>T+24h UPI Payout:</strong> Direct bank transfer upon digital weighment at buyer DC.</li>
+                  </ul>
                 </div>
-                <ul class="deck-list">
-                  <li><strong>Pre-Harvest Listing:</strong> Weekly catalogue published 72h before cutting crop.</li>
-                  <li><strong>Verified Visual Proof:</strong> 3 calibrated photos eliminate sight-unseen doubts.</li>
-                  <li><strong>Advance Pre-Booking:</strong> Firm Purchase Orders & locked rates before harvest.</li>
-                  <li><strong>T+24h UPI Payout:</strong> Direct bank transfer upon digital weighment at buyer DC.</li>
-                </ul>
               </div>
             </div>
 
@@ -183,53 +199,62 @@
 
           <!-- SLIDE 2: Target Customers & VPC -->
           <div class="slide-view" data-slide="2">
-            <div class="slide-top">
-              <span class="slide-tag">Slide 2 of 6 • Customer Segments & VPC</span>
-              <h2>Target B2B Segments & Value Proposition Alignment</h2>
-              <p>Predictable Supply for Modern Retail, HoReCa, and Agro-Processors</p>
+            <div class="slide-visual-wrapper" title="Click slide to view fullscreen">
+              <picture>
+                <source srcset="slides/slide_2.webp" type="image/webp">
+                <img src="slides/slide_2.jpg" alt="Slide 2: Target Customers & VPC" class="slide-visual-img" loading="lazy">
+              </picture>
             </div>
 
-            <div class="slide-grid-3">
-              <div class="deck-card">
-                <span class="tier-badge">Tier 1 • 45% Volume</span>
-                <h4>Modern Retail & Q-Commerce</h4>
-                <p class="tier-clients">Blinkit, Zepto, Supermarket Chains</p>
-                <div class="tier-feature">
-                  <strong>Grade A Produce:</strong> Uniform color & size (&lt;2% defect).
+            <div class="slide-card-details">
+              <div class="slide-top">
+                <span class="slide-tag">Slide 2 of 6 • Customer Segments & VPC</span>
+                <h2>Target B2B Segments & Value Proposition Alignment</h2>
+                <p>Predictable Supply for Modern Retail, HoReCa, and Agro-Processors</p>
+              </div>
+
+              <div class="slide-grid-3">
+                <div class="deck-card">
+                  <span class="tier-badge">Tier 1 • 45% Volume</span>
+                  <h4>Modern Retail & Q-Commerce</h4>
+                  <p class="tier-clients">Blinkit, Zepto, Supermarket Chains</p>
+                  <div class="tier-feature">
+                    <strong>Grade A Produce:</strong> Uniform color & size (&lt;2% defect).
+                  </div>
+                  <div class="tier-feature">
+                    <strong>+36h Shelf Life:</strong> Direct farmgate dispatch preserves freshness.
+                  </div>
                 </div>
-                <div class="tier-feature">
-                  <strong>+36h Shelf Life:</strong> Direct farmgate dispatch preserves freshness.
+
+                <div class="deck-card">
+                  <span class="tier-badge">Tier 2 • 35% Volume</span>
+                  <h4>HoReCa & Cloud Kitchens</h4>
+                  <p class="tier-clients">Hotels, Restaurants, Cloud Kitchens</p>
+                  <div class="tier-feature">
+                    <strong>Grade A & B Staples:</strong> High culinary pulp & flavor.
+                  </div>
+                  <div class="tier-feature">
+                    <strong>Contract Price Lock:</strong> Insulates kitchens against spot volatility.
+                  </div>
+                </div>
+
+                <div class="deck-card">
+                  <span class="tier-badge">Tier 3 • 20% Volume</span>
+                  <h4>Food Processing Units</h4>
+                  <p class="tier-clients">Puree, Sauces & Dehydrators</p>
+                  <div class="tier-feature">
+                    <strong>100% Salvage of Grade C:</strong> High pulp recovery.
+                  </div>
+                  <div class="tier-feature">
+                    <strong>Zero Farmgate Dumping:</strong> Complete crop monetization.
+                  </div>
                 </div>
               </div>
 
-              <div class="deck-card">
-                <span class="tier-badge">Tier 2 • 35% Volume</span>
-                <h4>HoReCa & Cloud Kitchens</h4>
-                <p class="tier-clients">Hotels, Restaurants, Cloud Kitchens</p>
-                <div class="tier-feature">
-                  <strong>Grade A & B Staples:</strong> High culinary pulp & flavor.
-                </div>
-                <div class="tier-feature">
-                  <strong>Contract Price Lock:</strong> Insulates kitchens against spot volatility.
-                </div>
+              <div class="vpc-banner-strip">
+                <i class="fa-solid fa-gem text-emerald"></i>
+                <span><strong>Value Proposition Core:</strong> Eliminates buyer "sight-unseen" risk with calibrated reference photographs while eliminating farmer distress dumping.</span>
               </div>
-
-              <div class="deck-card">
-                <span class="tier-badge">Tier 3 • 20% Volume</span>
-                <h4>Food Processing Units</h4>
-                <p class="tier-clients">Puree, Sauces & Dehydrators</p>
-                <div class="tier-feature">
-                  <strong>100% Salvage of Grade C:</strong> High pulp recovery.
-                </div>
-                <div class="tier-feature">
-                  <strong>Zero Farmgate Dumping:</strong> Complete crop monetization.
-                </div>
-              </div>
-            </div>
-
-            <div class="vpc-banner-strip">
-              <i class="fa-solid fa-gem text-emerald"></i>
-              <span><strong>Value Proposition Core:</strong> Eliminates buyer "sight-unseen" risk with calibrated reference photographs while eliminating farmer distress dumping.</span>
             </div>
 
             <div class="speaker-notes-box" id="notes-2">
@@ -240,43 +265,52 @@
 
           <!-- SLIDE 3: Operating Protocol -->
           <div class="slide-view" data-slide="3">
-            <div class="slide-top">
-              <span class="slide-tag">Slide 3 of 6 • Operating Protocol & Data Accuracy</span>
-              <h2>Standardizing Data: The 5-Stage Operating Flow</h2>
-              <p>How the FPO Guarantees &gt;96% Information Accuracy Across 40 Weekly Lots</p>
+            <div class="slide-visual-wrapper" title="Click slide to view fullscreen">
+              <picture>
+                <source srcset="slides/slide_3.webp" type="image/webp">
+                <img src="slides/slide_3.jpg" alt="Slide 3: Operating Flow & Quality Control" class="slide-visual-img" loading="lazy">
+              </picture>
             </div>
 
-            <div class="flow-horizontal-5">
-              <div class="step-card">
-                <span class="s-time">T - 72h</span>
-                <h5>1. Field Listing</h5>
-                <p>Scout logs 3 calibrated photos with FPO reference scale.</p>
+            <div class="slide-card-details">
+              <div class="slide-top">
+                <span class="slide-tag">Slide 3 of 6 • Operating Protocol & Data Accuracy</span>
+                <h2>Standardizing Data: The 5-Stage Operating Flow</h2>
+                <p>How the FPO Guarantees &gt;96% Information Accuracy Across 40 Weekly Lots</p>
               </div>
-              <div class="step-card">
-                <span class="s-time">T - 48h</span>
-                <h5>2. Quality Audit</h5>
-                <p>Agronomist reviews photos against AGMARK standards; issues Batch ID.</p>
-              </div>
-              <div class="step-card">
-                <span class="s-time">T - 36h</span>
-                <h5>3. Catalogue Launch</h5>
-                <p>Web portal + 7:00 AM WhatsApp broadcast to 120+ buyers.</p>
-              </div>
-              <div class="step-card">
-                <span class="s-time">T - 18h</span>
-                <h5>4. Pre-Booking</h5>
-                <p>Buyer locks PO with advance escrow; dawn harvest begins.</p>
-              </div>
-              <div class="step-card">
-                <span class="s-time">T + 24h</span>
-                <h5>5. Delivery & Pay</h5>
-                <p>Direct LCV transit; buyer signs GRN; automated UPI payout.</p>
-              </div>
-            </div>
 
-            <div class="qc-highlight-box">
-              <strong><i class="fa-solid fa-camera text-emerald"></i> Standardized 3-Photo Rule:</strong>
-              <span>Photo 1 (Field canopy & maturity) • Photo 2 (Crated sample assortment) • Photo 3 (Cross-section cut with official FPO calibration coin & color strip).</span>
+              <div class="flow-horizontal-5">
+                <div class="step-card">
+                  <span class="s-time">T - 72h</span>
+                  <h5>1. Field Listing</h5>
+                  <p>Scout logs 3 calibrated photos with FPO reference scale.</p>
+                </div>
+                <div class="step-card">
+                  <span class="s-time">T - 48h</span>
+                  <h5>2. Quality Audit</h5>
+                  <p>Agronomist reviews photos against AGMARK standards; issues Batch ID.</p>
+                </div>
+                <div class="step-card">
+                  <span class="s-time">T - 36h</span>
+                  <h5>3. Catalogue Launch</h5>
+                  <p>Web portal + 7:00 AM WhatsApp broadcast to 120+ buyers.</p>
+                </div>
+                <div class="step-card">
+                  <span class="s-time">T - 18h</span>
+                  <h5>4. Pre-Booking</h5>
+                  <p>Buyer locks PO with advance escrow; dawn harvest begins.</p>
+                </div>
+                <div class="step-card">
+                  <span class="s-time">T + 24h</span>
+                  <h5>5. Delivery & Pay</h5>
+                  <p>Direct LCV transit; buyer signs GRN; automated UPI payout.</p>
+                </div>
+              </div>
+
+              <div class="qc-highlight-box">
+                <strong><i class="fa-solid fa-camera text-emerald"></i> Standardized 3-Photo Rule:</strong>
+                <span>Photo 1 (Field canopy & maturity) • Photo 2 (Crated sample assortment) • Photo 3 (Cross-section cut with official FPO calibration coin & color strip).</span>
+              </div>
             </div>
 
             <div class="speaker-notes-box" id="notes-3">
@@ -287,35 +321,44 @@
 
           <!-- SLIDE 4: Economics & Waterfall -->
           <div class="slide-view" data-slide="4">
-            <div class="slide-top">
-              <span class="slide-tag">Slide 4 of 6 • Financial Model & Unit Economics</span>
-              <h2>Financial Viability: Sustainable Margins & Farmer Realization</h2>
-              <p>₹66.5 Lakhs Monthly GMV | ₹2.05 Lakhs Net Monthly Surplus</p>
+            <div class="slide-visual-wrapper" title="Click slide to view fullscreen">
+              <picture>
+                <source srcset="slides/slide_4.webp" type="image/webp">
+                <img src="slides/slide_4.jpg" alt="Slide 4: Financial Model & Unit Economics" class="slide-visual-img" loading="lazy">
+              </picture>
             </div>
 
-            <div class="slide-grid-2">
-              <div class="deck-card">
-                <h4><i class="fa-solid fa-chart-line text-emerald"></i> FPO Monthly Revenue Model</h4>
-                <div class="deck-mini-table">
-                  <div class="dm-row"><span>3.5% Catalogue Facilitation Fee:</span><strong>₹2,32,848</strong></div>
-                  <div class="dm-row"><span>₹50 / Lot Listing Fee:</span><strong>₹8,400</strong></div>
-                  <div class="dm-row"><span>1.0% Consolidated Logistics Margin:</span><strong>₹66,528</strong></div>
-                  <div class="dm-row total"><span>Total Monthly Gross Revenue:</span><strong class="text-emerald">₹3,07,776</strong></div>
-                  <div class="dm-row"><span>Operating OPEX (Scouts, API, Crates):</span><span>-₹1,02,632</span></div>
-                  <div class="dm-row surplus"><span>Net Monthly Surplus (Retained):</span><strong class="text-emerald">₹2,05,144 / mo</strong></div>
-                </div>
+            <div class="slide-card-details">
+              <div class="slide-top">
+                <span class="slide-tag">Slide 4 of 6 • Financial Model & Unit Economics</span>
+                <h2>Financial Viability: Sustainable Margins & Farmer Realization</h2>
+                <p>₹66.5 Lakhs Monthly GMV | ₹2.05 Lakhs Net Monthly Surplus</p>
               </div>
 
-              <div class="deck-card">
-                <h4><i class="fa-solid fa-hand-holding-dollar text-emerald"></i> Farmer Realization Waterfall (₹ / Qtl)</h4>
-                <div class="deck-mini-table">
-                  <div class="dm-row"><span>Mandi Gross Price:</span><span>₹2,200</span></div>
-                  <div class="dm-row text-red"><span>Less Mandi Deductions (Comm + Cuts + Freight):</span><span>-₹449</span></div>
-                  <div class="dm-row"><span>Mandi Net Realization:</span><strong>₹1,751 / Qtl</strong></div>
-                  <div class="dm-row" style="border-top:1px dashed #cbd5e1; margin-top:4px;"><span>FPO Contract Farmgate Price:</span><strong>₹2,350</strong></div>
-                  <div class="dm-row text-red"><span>Less FPO Fee & Local Crating:</span><span>-₹147.25</span></div>
-                  <div class="dm-row surplus"><span>FPO Net Farmer Payout:</span><strong class="text-emerald">₹2,202.75 / Qtl</strong></div>
-                  <div class="dm-row highlight"><span>Net Cash Gain:</span><strong class="text-emerald">+₹451.75 / Qtl (+25.8%)</strong></div>
+              <div class="slide-grid-2">
+                <div class="deck-card">
+                  <h4><i class="fa-solid fa-chart-line text-emerald"></i> FPO Monthly Revenue Model</h4>
+                  <div class="deck-mini-table">
+                    <div class="dm-row"><span>3.5% Catalogue Facilitation Fee:</span><strong>₹2,32,848</strong></div>
+                    <div class="dm-row"><span>₹50 / Lot Listing Fee:</span><strong>₹8,400</strong></div>
+                    <div class="dm-row"><span>1.0% Consolidated Logistics Margin:</span><strong>₹66,528</strong></div>
+                    <div class="dm-row total"><span>Total Monthly Gross Revenue:</span><strong class="text-emerald">₹3,07,776</strong></div>
+                    <div class="dm-row"><span>Operating OPEX (Scouts, API, Crates):</span><span>-₹1,02,632</span></div>
+                    <div class="dm-row surplus"><span>Net Monthly Surplus (Retained):</span><strong class="text-emerald">₹2,05,144 / mo</strong></div>
+                  </div>
+                </div>
+
+                <div class="deck-card">
+                  <h4><i class="fa-solid fa-hand-holding-dollar text-emerald"></i> Farmer Realization Waterfall (₹ / Qtl)</h4>
+                  <div class="deck-mini-table">
+                    <div class="dm-row"><span>Mandi Gross Price:</span><span>₹2,200</span></div>
+                    <div class="dm-row text-red"><span>Less Mandi Deductions (Comm + Cuts + Freight):</span><span>-₹449</span></div>
+                    <div class="dm-row"><span>Mandi Net Realization:</span><strong>₹1,751 / Qtl</strong></div>
+                    <div class="dm-row" style="border-top:1px dashed #cbd5e1; margin-top:4px;"><span>FPO Contract Farmgate Price:</span><strong>₹2,350</strong></div>
+                    <div class="dm-row text-red"><span>Less FPO Fee & Local Crating:</span><span>-₹147.25</span></div>
+                    <div class="dm-row surplus"><span>FPO Net Farmer Payout:</span><strong class="text-emerald">₹2,202.75 / Qtl</strong></div>
+                    <div class="dm-row highlight"><span>Net Cash Gain:</span><strong class="text-emerald">+₹451.75 / Qtl (+25.8%)</strong></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -328,37 +371,46 @@
 
           <!-- SLIDE 5: Risks & Growth -->
           <div class="slide-view" data-slide="5">
-            <div class="slide-top">
-              <span class="slide-tag">Slide 5 of 6 • Risk Engineering & Engagement</span>
-              <h2>Risk Mitigation & Buyer Engagement Engines</h2>
-              <p>Practical Defenses Against Photo Drift, Spoilage, and Price Shocks</p>
+            <div class="slide-visual-wrapper" title="Click slide to view fullscreen">
+              <picture>
+                <source srcset="slides/slide_5.webp" type="image/webp">
+                <img src="slides/slide_5.jpg" alt="Slide 5: Risks & Buyer Growth Engines" class="slide-visual-img" loading="lazy">
+              </picture>
             </div>
 
-            <div class="slide-grid-2">
-              <div class="deck-card">
-                <h4><i class="fa-solid fa-shield-halved text-blue"></i> Key Risk Mitigations</h4>
-                <ul class="deck-list">
-                  <li><strong>Photo Drift / Visual Fraud:</strong> Mandatory FPO color calibration strip in every photo; 100% inspection at hub.</li>
-                  <li><strong>Weather Delay:</strong> Dynamic 12-hour confirmation pings; automated alternate batch re-slotting.</li>
-                  <li><strong>Transit Bruising:</strong> Stackable ventilated HDPE crates reduce damage from 18% down to &lt;2.5%.</li>
-                  <li><strong>Farmer Side-Selling:</strong> Guaranteed T+24h digital payout + 50% year-end profit sharing.</li>
-                </ul>
+            <div class="slide-card-details">
+              <div class="slide-top">
+                <span class="slide-tag">Slide 5 of 6 • Risk Engineering & Engagement</span>
+                <h2>Risk Mitigation & Buyer Engagement Engines</h2>
+                <p>Practical Defenses Against Photo Drift, Spoilage, and Price Shocks</p>
               </div>
 
-              <div class="deck-card">
-                <h4><i class="fa-solid fa-bolt text-amber"></i> Two Buyer Growth Engines</h4>
-                <div class="growth-card">
-                  <i class="fa-brands fa-whatsapp text-emerald"></i>
-                  <div>
-                    <h6>1. 7:00 AM WhatsApp "Harvest Alert"</h6>
-                    <p>Interactive push notifications with 1-click booking buttons, locking 65% of orders within 90 minutes.</p>
-                  </div>
+              <div class="slide-grid-2">
+                <div class="deck-card">
+                  <h4><i class="fa-solid fa-shield-halved text-blue"></i> Key Risk Mitigations</h4>
+                  <ul class="deck-list">
+                    <li><strong>Photo Drift / Visual Fraud:</strong> Mandatory FPO color calibration strip in every photo; 100% inspection at hub.</li>
+                    <li><strong>Weather Delay:</strong> Dynamic 12-hour confirmation pings; automated alternate batch re-slotting.</li>
+                    <li><strong>Transit Bruising:</strong> Stackable ventilated HDPE crates reduce damage from 18% down to &lt;2.5%.</li>
+                    <li><strong>Farmer Side-Selling:</strong> Guaranteed T+24h digital payout + 50% year-end profit sharing.</li>
+                  </ul>
                 </div>
-                <div class="growth-card">
-                  <i class="fa-solid fa-qrcode text-blue"></i>
-                  <div>
-                    <h6>2. "Farm-to-Shelf" Traceability QR</h6>
-                    <p>Crate QR codes displayed on retail shelves, allowing supermarkets to charge a 15% conscious consumer premium.</p>
+
+                <div class="deck-card">
+                  <h4><i class="fa-solid fa-bolt text-amber"></i> Two Buyer Growth Engines</h4>
+                  <div class="growth-card">
+                    <i class="fa-brands fa-whatsapp text-emerald"></i>
+                    <div>
+                      <h6>1. 7:00 AM WhatsApp "Harvest Alert"</h6>
+                      <p>Interactive push notifications with 1-click booking buttons, locking 65% of orders within 90 minutes.</p>
+                    </div>
+                  </div>
+                  <div class="growth-card">
+                    <i class="fa-solid fa-qrcode text-blue"></i>
+                    <div>
+                      <h6>2. "Farm-to-Shelf" Traceability QR</h6>
+                      <p>Crate QR codes displayed on retail shelves, allowing supermarkets to charge a 15% conscious consumer premium.</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -372,41 +424,50 @@
 
           <!-- SLIDE 6: 90-Day GTM & Demo CTA -->
           <div class="slide-view" data-slide="6">
-            <div class="slide-top">
-              <span class="slide-tag">Slide 6 of 6 • Roadmap & Live Demonstration</span>
-              <h2>90-Day Pilot-to-Scale Roadmap & Live Prototype</h2>
-              <p>Structured Rollout from 40-Farmer Pilot to Full 180-Farmer Institutional Linkage</p>
+            <div class="slide-visual-wrapper" title="Click slide to view fullscreen">
+              <picture>
+                <source srcset="slides/slide_6.webp" type="image/webp">
+                <img src="slides/slide_6.jpg" alt="Slide 6: 90-Day GTM Roadmap & Live Demo" class="slide-visual-img" loading="lazy">
+              </picture>
             </div>
 
-            <div class="roadmap-3-boxes">
-              <div class="road-box">
-                <span class="r-badge">Month 1 • Days 1–30</span>
-                <h5>Foundation & Standardization</h5>
-                <p>Train 40 lead farmers across 2 staple clusters; calibrate grading kits; execute 15 trial lots.</p>
+            <div class="slide-card-details">
+              <div class="slide-top">
+                <span class="slide-tag">Slide 6 of 6 • Roadmap & Live Demonstration</span>
+                <h2>90-Day Pilot-to-Scale Roadmap & Live Prototype</h2>
+                <p>Structured Rollout from 40-Farmer Pilot to Full 180-Farmer Institutional Linkage</p>
               </div>
 
-              <div class="road-box">
-                <span class="r-badge">Month 2 • Days 31–60</span>
-                <h5>Pilot & Matchmaking</h5>
-                <p>Scale to 20 listings/week; onboard 15 institutional buyers; deploy T+24h UPI payouts; maintain &lt;3% return rate.</p>
+              <div class="roadmap-3-boxes">
+                <div class="road-box">
+                  <span class="r-badge">Month 1 • Days 1–30</span>
+                  <h5>Foundation & Standardization</h5>
+                  <p>Train 40 lead farmers across 2 staple clusters; calibrate grading kits; execute 15 trial lots.</p>
+                </div>
+
+                <div class="road-box">
+                  <span class="r-badge">Month 2 • Days 31–60</span>
+                  <h5>Pilot & Matchmaking</h5>
+                  <p>Scale to 20 listings/week; onboard 15 institutional buyers; deploy T+24h UPI payouts; maintain &lt;3% return rate.</p>
+                </div>
+
+                <div class="road-box">
+                  <span class="r-badge">Month 3 • Days 61–90</span>
+                  <h5>Full Scale Operations</h5>
+                  <p>All 180 farmers active; 40 listings/week stable; ₹66.5L monthly GMV; ONDC integration for automated procurement.</p>
+                </div>
               </div>
 
-              <div class="road-box">
-                <span class="r-badge">Month 3 • Days 61–90</span>
-                <h5>Full Scale Operations</h5>
-                <p>All 180 farmers active; 40 listings/week stable; ₹66.5L monthly GMV; ONDC integration for automated procurement.</p>
+              <!-- Demo Trigger Box -->
+              <div class="demo-cta-strip">
+                <div>
+                  <h5>Interactive Prototype Ready:</h5>
+                  <p>Explore all 40 weekly listings, simulate WhatsApp RFQs, and review the FPO quality verification gate.</p>
+                </div>
+                <a href="../demo/index.html" target="_blank" class="btn-deck-demo">
+                  <i class="fa-solid fa-play"></i> Launch Demo Prototype
+                </a>
               </div>
-            </div>
-
-            <!-- Demo Trigger Box -->
-            <div class="demo-cta-strip">
-              <div>
-                <h5>Interactive Prototype Ready:</h5>
-                <p>Explore all 40 weekly listings, simulate WhatsApp RFQs, and review the FPO quality verification gate.</p>
-              </div>
-              <a href="../demo/index.html" target="_blank" class="btn-deck-demo">
-                <i class="fa-solid fa-play"></i> Launch Demo Prototype
-              </a>
             </div>
 
             <div class="speaker-notes-box" id="notes-6">
@@ -813,7 +874,11 @@
             <h4>Academic Business Report • Case Study No. 51</h4>
             <span class="sub-lead">Full 5-page formal report covering all objectives and case questions.</span>
           </div>
-          <button class="btn-print-doc" id="printReportBtn"><i class="fa-solid fa-print"></i> Print / PDF</button>
+          <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+            <a href="../KISAN-SEVA%20FPO%20Pitch.pdf" class="btn-deck-pdf" download><i class="fa-solid fa-file-pdf"></i> Pitch Deck (20 MB)</a>
+            <a href="../Case_Study_51_Farm_Produce_Catalogue_Documentation.docx" class="btn-deck-pdf" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;" download><i class="fa-solid fa-file-word"></i> Submission DOCX</a>
+            <button class="btn-print-doc" id="printReportBtn"><i class="fa-solid fa-print"></i> Print / PDF</button>
+          </div>
         </div>
 
         <div class="report-ch-nav">
