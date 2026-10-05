@@ -71,6 +71,8 @@ We operate as a high-volume, tech-enabled agribusiness platform. Rather than hol
 
 ```
 GTM_major_project/
+├── Case_Study_51_Farm_Produce_Catalogue_Documentation.docx  # 📑 Official Coursework Submission (.docx)
+├── Case_Study_51_Farm_Produce_Catalogue_Documentation.pdf   # 📄 High-Res Evaluation Copy (.pdf)
 ├── index.html                    # 🚀 Master Launchpad Hub (connects Demo & Research)
 ├── README.md                     # 📖 Complete documentation & presentation guide
 ├── CANVA_PRESENTATION_PROMPT.md  # 🎨 Detailed copy-paste prompts for Canva & Gamma AI slides
