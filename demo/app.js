@@ -19,8 +19,8 @@ const PRODUCE_DATABASE = [
     brix: "4.8° Brix",
     diameter: "55-65 mm",
     defectRate: "0.8% (<2% AGMARK)",
-    crateImg: "https://images.unsplash.com/photo-1546470427-227c7369a9b9?auto=format&fit=crop&w=600&q=80",
-    crossSectionImg: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80"
+    crateImg: "assets/crops/tomato.jpg",
+    crossSectionImg: "assets/crops/tomato_cross.jpg"
   },
   {
     id: "LOT-ONN-02",
@@ -37,8 +37,8 @@ const PRODUCE_DATABASE = [
     brix: "11.2° Brix",
     diameter: "50-60 mm",
     defectRate: "1.1%",
-    crateImg: "https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&fit=crop&w=600&q=80",
-    crossSectionImg: "https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=600&q=80"
+    crateImg: "assets/crops/red_onion.jpg",
+    crossSectionImg: "assets/crops/onion_field.jpg"
   },
   {
     id: "LOT-CAP-03",
@@ -55,8 +55,8 @@ const PRODUCE_DATABASE = [
     brix: "5.1° Brix",
     diameter: "70-85 mm blocky",
     defectRate: "0.5%",
-    crateImg: "https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?auto=format&fit=crop&w=600&q=80",
-    crossSectionImg: "https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=600&q=80"
+    crateImg: "assets/crops/green_capsicum.jpg",
+    crossSectionImg: "assets/crops/capsicum_cross.jpg"
   },
   {
     id: "LOT-CHL-04",
@@ -73,8 +73,8 @@ const PRODUCE_DATABASE = [
     brix: "65k SHU",
     diameter: "8-11 cm slender",
     defectRate: "3.2%",
-    crateImg: "https://images.unsplash.com/photo-1526346698789-224a79ed7b83?auto=format&fit=crop&w=600&q=80",
-    crossSectionImg: "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=600&q=80"
+    crateImg: "assets/crops/green_chilli.jpg",
+    crossSectionImg: "assets/crops/green_chilli.jpg"
   },
   {
     id: "LOT-POM-05",
@@ -91,8 +91,8 @@ const PRODUCE_DATABASE = [
     brix: "16.4° Brix",
     diameter: "280g / fruit",
     defectRate: "1.4%",
-    crateImg: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80",
-    crossSectionImg: "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=600&q=80"
+    crateImg: "assets/crops/pomegranate.jpg",
+    crossSectionImg: "assets/crops/pomegranate_cross.jpg"
   },
   {
     id: "LOT-POT-06",
@@ -109,23 +109,41 @@ const PRODUCE_DATABASE = [
     brix: "18.5% Dry Matter",
     diameter: "45-65 mm oval",
     defectRate: "4.0%",
-    crateImg: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80",
-    crossSectionImg: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80"
+    crateImg: "assets/crops/potato.jpg",
+    crossSectionImg: "assets/crops/potato.jpg"
   }
 ];
 
-// Generate additional 34 lots to reach full 40 weekly listings
+// Rich, diverse pool of 24 Indian agricultural crops with 100% authentic local images
 const CROPS_POOL = [
-  { name: "Tomato (Abhinav)", cat: "Vegetable", p: 2300, g: "Grade A", img: "https://images.unsplash.com/photo-1546470427-227c7369a9b9?auto=format&fit=crop&w=600&q=80" },
-  { name: "Red Onion (Nashik)", cat: "Bulb & Root", p: 1950, g: "Grade A", img: "https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&fit=crop&w=600&q=80" },
-  { name: "Green Capsicum", cat: "Vegetable", p: 3350, g: "Grade A", img: "https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?auto=format&fit=crop&w=600&q=80" },
-  { name: "Green Chilli (G-4)", cat: "Commercial", p: 4100, g: "Grade B", img: "https://images.unsplash.com/photo-1526346698789-224a79ed7b83?auto=format&fit=crop&w=600&q=80" },
-  { name: "Pomegranate (Bhagwa)", cat: "Fruit", p: 7600, g: "Grade A", img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80" },
-  { name: "Potato (Kufri Pukhraj)", cat: "Bulb & Root", p: 1400, g: "Grade B", img: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=80" }
+  { name: "English Cucumber", cat: "Vegetable", p: 1850, g: "Grade A", img: "assets/crops/cucumber.jpg", cross: "assets/crops/cucumber_cross.jpg" },
+  { name: "Snowball Cauliflower", cat: "Vegetable", p: 2100, g: "Grade A", img: "assets/crops/cauliflower.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Green Cabbage", cat: "Vegetable", p: 1400, g: "Grade A", img: "assets/crops/cabbage.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Purple Brinjal", cat: "Vegetable", p: 1950, g: "Grade B", img: "assets/crops/brinjal.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Fresh Garlic Bulbs", cat: "Bulb & Root", p: 9200, g: "Grade A", img: "assets/crops/garlic.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Fresh Ginger Rhizomes", cat: "Bulb & Root", p: 6800, g: "Grade A", img: "assets/crops/ginger.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Orange Carrot (Kuroda)", cat: "Bulb & Root", p: 2400, g: "Grade A", img: "assets/crops/carrot.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Tender Okra (Bhindi)", cat: "Vegetable", p: 3200, g: "Grade A", img: "assets/crops/okra.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Fresh Green Peas", cat: "Vegetable", p: 4800, g: "Grade A", img: "assets/crops/green_peas.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Golden Sweet Corn", cat: "Commercial", p: 1750, g: "Grade A", img: "assets/crops/sweet_corn.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Fresh Spinach (Palak)", cat: "Leafy", p: 1600, g: "Grade A", img: "assets/crops/spinach.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Green Coriander (Kothmir)", cat: "Leafy", p: 2200, g: "Grade A", img: "assets/crops/coriander.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Bitter Gourd (Karela)", cat: "Vegetable", p: 2600, g: "Grade B", img: "assets/crops/bitter_gourd.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Bottle Gourd (Lauki)", cat: "Vegetable", p: 1550, g: "Grade A", img: "assets/crops/bottle_gourd.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Banana (Grand Naine)", cat: "Fruit", p: 1650, g: "Grade A", img: "assets/crops/banana.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Red Lady Papaya", cat: "Fruit", p: 2100, g: "Grade A", img: "assets/crops/papaya.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Safeda Guava", cat: "Fruit", p: 3100, g: "Grade A", img: "assets/crops/guava.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Kagzi Lemon", cat: "Fruit", p: 4500, g: "Grade A", img: "assets/crops/lemon.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Striped Watermelon", cat: "Fruit", p: 1350, g: "Grade A", img: "assets/crops/watermelon.jpg", cross: "assets/crops/watermelon_cross.jpg" },
+  { name: "White Radish (Mooli)", cat: "Bulb & Root", p: 1300, g: "Grade B", img: "assets/crops/radish.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Crimson Beetroot", cat: "Bulb & Root", p: 1800, g: "Grade A", img: "assets/crops/beetroot.jpg", cross: "assets/crops/calibrated_crate.jpg" },
+  { name: "Tomato (Abhinav)", cat: "Vegetable", p: 2300, g: "Grade A", img: "assets/crops/tomato.jpg", cross: "assets/crops/tomato_cross.jpg" },
+  { name: "Red Onion (Nashik)", cat: "Bulb & Root", p: 1950, g: "Grade A", img: "assets/crops/red_onion.jpg", cross: "assets/crops/onion_field.jpg" },
+  { name: "Green Capsicum", cat: "Vegetable", p: 3350, g: "Grade A", img: "assets/crops/green_capsicum.jpg", cross: "assets/crops/capsicum_cross.jpg" }
 ];
 
-const FARMERS_POOL = ["Pandurang Kadam", "Sanjay Wagh", "Santosh Dhikale", "Manoj Pingle", "Yogesh Aher", "Shivaji Sonawane", "Gopal Gunjal"];
-const VILLAGES_POOL = ["Shirasgaon Hub", "Pimpalgaon Hub", "Dindori Hub", "Chandwad Hub", "Ozar Hub"];
+const FARMERS_POOL = ["Pandurang Kadam", "Sanjay Wagh", "Santosh Dhikale", "Manoj Pingle", "Yogesh Aher", "Shivaji Sonawane", "Gopal Gunjal", "Bhausaheb Jadhav", "Vithalrao Shinde", "Anandrao Pawar"];
+const VILLAGES_POOL = ["Shirasgaon Hub", "Pimpalgaon Hub", "Dindori Hub", "Chandwad Hub", "Ozar Hub", "Niphad Hub", "Yeola Hub"];
 const HARVEST_MAP = [
   { t: "Today", w: "today", d: "Today 3:00 PM" },
   { t: "Next 24h", w: "24h", d: "Tomorrow 6:30 AM" },
@@ -155,7 +173,7 @@ for (let i = 7; i <= 40; i++) {
     diameter: "Uniform Band",
     defectRate: i % 6 === 0 ? "6.8%" : (i % 3 === 0 ? "3.0%" : "0.9%"),
     crateImg: cropMeta.img,
-    crossSectionImg: cropMeta.img
+    crossSectionImg: cropMeta.cross || cropMeta.img
   });
 }
 
@@ -171,8 +189,8 @@ let PENDING_SUBMISSIONS = [
     priceFloor: 3300,
     harvestDate: "In 48h",
     photos: [
-      "https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=400&q=80"
+      "assets/crops/green_capsicum.jpg",
+      "assets/crops/capsicum_cross.jpg"
     ]
   },
   {
@@ -185,8 +203,8 @@ let PENDING_SUBMISSIONS = [
     priceFloor: 2000,
     harvestDate: "Tomorrow",
     photos: [
-      "https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=400&q=80"
+      "assets/crops/red_onion.jpg",
+      "assets/crops/onion_field.jpg"
     ]
   },
   {
@@ -199,8 +217,8 @@ let PENDING_SUBMISSIONS = [
     priceFloor: 1900,
     harvestDate: "In 3 Days",
     photos: [
-      "https://images.unsplash.com/photo-1546470427-227c7369a9b9?auto=format&fit=crop&w=400&q=80",
-      "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=400&q=80"
+      "assets/crops/tomato.jpg",
+      "assets/crops/tomato_cross.jpg"
     ]
   }
 ];
@@ -625,11 +643,11 @@ function setupFarmerForm() {
       document.getElementById("expectedPriceInput").value = 2400;
 
       document.getElementById("preview1").classList.add("has-image");
-      document.getElementById("preview1").innerHTML = `<img src="https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=400&q=80">`;
+      document.getElementById("preview1").innerHTML = `<img src="assets/crops/tomato.jpg" alt="Field Harvest Photo">`;
       document.getElementById("preview2").classList.add("has-image");
-      document.getElementById("preview2").innerHTML = `<img src="https://images.unsplash.com/photo-1546470427-227c7369a9b9?auto=format&fit=crop&w=400&q=80">`;
+      document.getElementById("preview2").innerHTML = `<img src="assets/crops/calibrated_crate.jpg" alt="Calibrated Produce Crate">`;
       document.getElementById("preview3").classList.add("has-image");
-      document.getElementById("preview3").innerHTML = `<img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=400&q=80">`;
+      document.getElementById("preview3").innerHTML = `<img src="assets/crops/tomato_cross.jpg" alt="Cross-Section Cut">`;
 
       document.getElementById("chkScale").checked = true;
       document.getElementById("chkMoisture").checked = true;
@@ -659,8 +677,8 @@ function setupFarmerForm() {
         priceFloor: pVal,
         harvestDate: `On ${hDate}`,
         photos: [
-          "https://images.unsplash.com/photo-1546470427-227c7369a9b9?auto=format&fit=crop&w=400&q=80",
-          "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=400&q=80"
+          "assets/crops/tomato.jpg",
+          "assets/crops/tomato_cross.jpg"
         ]
       });
 

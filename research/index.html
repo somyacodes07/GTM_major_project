@@ -866,63 +866,269 @@
       </div>
     </section>
 
-    <!-- ================= SECTION 7: 5-PAGE REPORT ================= -->
+    <!-- ================= SECTION 7: FORMAL SUBMISSION DOCUMENTATION ================= -->
     <section class="sec-pane" id="sec-business-report">
       <div class="report-box">
         <div class="report-top-bar">
           <div>
             <h4>Academic Business Report • Case Study No. 51</h4>
-            <span class="sub-lead">Full 5-page formal report covering all objectives and case questions.</span>
+            <span class="sub-lead">Comprehensive 8-Part Executive Submission & Go-to-Market Documentation.</span>
           </div>
           <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
             <a href="../KISAN-SEVA%20FPO%20Pitch.pdf" class="btn-deck-pdf" download><i class="fa-solid fa-file-pdf"></i> Pitch Deck (20 MB)</a>
             <a href="../Case_Study_51_Farm_Produce_Catalogue_Documentation.docx" class="btn-deck-pdf" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;" download><i class="fa-solid fa-file-word"></i> Submission DOCX</a>
+            <a href="../Case_Study_51_Farm_Produce_Catalogue_Documentation.pdf" class="btn-deck-pdf" style="background:#fef3c7; color:#92400e; border-color:#fde68a;" target="_blank"><i class="fa-solid fa-file-pdf"></i> Evaluation PDF</a>
             <button class="btn-print-doc" id="printReportBtn"><i class="fa-solid fa-print"></i> Print / PDF</button>
           </div>
         </div>
 
         <div class="report-ch-nav">
-          <button class="ch-btn active" data-ch="ch1">1. Problem & Opportunity</button>
-          <button class="ch-btn" data-ch="ch2">2. Information Gaps</button>
-          <button class="ch-btn" data-ch="ch3">3. Customers & VPC</button>
-          <button class="ch-btn" data-ch="ch4">4. Operating Journey</button>
-          <button class="ch-btn" data-ch="ch5">5. Financial Calculations</button>
+          <button class="ch-btn active" data-ch="ch1">1. Executive Abstract</button>
+          <button class="ch-btn" data-ch="ch2">2. Problem vs Opportunity</button>
+          <button class="ch-btn" data-ch="ch3">3. Stakeholder Matrix</button>
+          <button class="ch-btn" data-ch="ch4">4. Customers & VPC</button>
+          <button class="ch-btn" data-ch="ch5">5. Operating Protocol & QC</button>
+          <button class="ch-btn" data-ch="ch6">6. Financials & Economics</button>
+          <button class="ch-btn" data-ch="ch7">7. Risks & Growth Engines</button>
+          <button class="ch-btn" data-ch="ch8">8. 90-Day GTM Roadmap</button>
         </div>
 
         <div class="report-text-container" id="reportContentArea">
+          <!-- CHAPTER 1 -->
           <div class="ch-content active" id="ch1">
-            <h5>1. Core Problem & Opportunity Statements</h5>
-            <p><strong>The Core Problem:</strong> Smallholder farmers belonging to the 180-member FPO harvest without confirmed buyers. Arriving at APMC mandis uncommitted forces distress bargaining, where commission agents manipulate subjective grading and impose weighment cuts (*kata chhoot*), reducing farmer realization by 18% to 28%.</p>
-            <p><strong>The Clear Opportunity:</strong> To build a weekly digital photo catalogue for 40 lots, enabling verified visual grading, scheduled farmgate collection, and direct digital linkage with urban B2B procurement partners (modern retail, HoReCa, food processors), capturing a 20%+ price premium for farmers while delivering fresh, traceable produce within 24 hours of harvest.</p>
+            <h5>1. Executive Summary & Project Abstract</h5>
+            <div class="deck-stat-callout text-emerald" style="margin-bottom:1rem;">
+              <strong>Case Study No. 51: Farm Produce Photo Catalogue</strong>
+              <span>ITM Skills University • School of Future Tech | Go-to-Market & Customer Operations (Sprint I)</span>
+              <div style="font-size:0.75rem; margin-top:0.35rem; color:var(--text);"><strong>Student:</strong> Somyajeet Singh • <strong>Roll No:</strong> 150096725043</div>
+            </div>
+            <p><strong>Core Objective:</strong> To engineer a commercially self-sustaining digital go-to-market architecture for a 180-member Farmer Producer Organization (FPO) managing 40 distinct produce lots weekly. The initiative transitions smallholders from blind harvesting and distress mandi selling into scheduled, pre-booked digital contracts.</p>
+            <div class="table-responsive" style="margin-top:0.75rem;">
+              <table class="report-table">
+                <thead>
+                  <tr><th>Metric / Pillar</th><th>Status / Target</th><th>Significance & Impact</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Target Cohort</strong></td><td>180 Smallholders (40 Weekly Lots)</td><td>Covers 5 staple crop clusters across Nashik district.</td></tr>
+                  <tr><td><strong>Weekly Throughput</strong></td><td>72 Metric Tonnes (720 Quintals)</td><td>40 lots @ average 18 Quintals per lot.</td></tr>
+                  <tr><td><strong>Monthly GMV</strong></td><td>₹66,52,800 (~₹66.5 Lakhs)</td><td>Base wholesale value transacted on catalogue.</td></tr>
+                  <tr><td><strong>FPO Net Monthly Surplus</strong></td><td>₹2,05,144 / month (~₹24.6L / yr)</td><td>Retained after all scouts, management & crate funds.</td></tr>
+                  <tr><td><strong>Farmer Net Cash Uplift</strong></td><td>+₹451.75 / Quintal (+25.8%)</td><td>₹1.64 Crores collective annual member gain.</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
+          <!-- CHAPTER 2 -->
           <div class="ch-content" id="ch2">
-            <h5>2. Information Gaps & Stakeholder Mapping</h5>
-            <p><strong>Farmer:</strong> Needs advance demand and price certainty before cutting crops. Solution: 72h advance catalogue listing and binding PO.</p>
-            <p><strong>FPO QC Lead:</strong> Needs verified field yield and harvest timing to eliminate buyer disputes. Solution: Calibrated 3-photo upload with physical scale strip.</p>
-            <p><strong>B2B Buyers:</strong> Need visual proof of maturity, confirmed quintals, and traceability. Solution: High-resolution photos, AGMARK Grade A/B/C cards, and origin batch tags.</p>
+            <h5>2. Core Problem vs. Market Opportunity Statement</h5>
+            <p><strong>The Core Problem (Traditional Mandi Friction):</strong> Smallholder farmers harvest perishable produce blindly without confirmed buyers. Upon transporting crops to physical APMC mandis in unventilated gunny bags, they face severe distress bargaining:</p>
+            <ul class="deck-list">
+              <li><strong>Arbitrary Visual Haircuts:</strong> Commission agents enforce 15% to 30% price discounts citing subjective quality flaws without objective tools.</li>
+              <li><strong>Hidden Deductions (*Kata Chhoot*):</strong> Unofficial weighment cuts of 3% to 5% are deducted per bag for alleged dust, moisture, and handling.</li>
+              <li><strong>Heavy Transit Spoilage:</strong> Rough handling and poor ventilation destroy 16% to 22% of produce before it reaches retail shelves.</li>
+              <li><strong>Delayed Payment Terms:</strong> 15 to 45 day informal credit cycles drain working capital and trap farmers in exploitative local debt.</li>
+            </ul>
+            <p style="margin-top:0.75rem;"><strong>The Market Opportunity:</strong> Standardizing a weekly photo catalogue published 72 hours before harvest. By uploading 3 calibrated photos with physical reference strips, buyers lock Purchase Orders before harvesting begins. Produce is cut at dawn, packed directly into ventilated HDPE crates, and delivered to distribution centers within 24 hours of harvest.</p>
           </div>
 
+          <!-- CHAPTER 3 -->
           <div class="ch-content" id="ch3">
-            <h5>3. Target Customers & Value Proposition Canvas</h5>
-            <p><strong>Segment 1: Modern Retail & Quick Commerce (45% Volume)</strong> — Require Grade A produce, daily replenishment, and +36h extended shelf-life.</p>
-            <p><strong>Segment 2: HoReCa & Cloud Kitchens (35% Volume)</strong> — Require Grade A & B culinary staples, weekly contract price stability.</p>
-            <p><strong>Segment 3: Agro-Processors (20% Volume)</strong> — Bulk absorption of Grade C produce for puree and sauces, ensuring zero farmgate dumping.</p>
+            <h5>3. Critical Information Gaps & Multi-Stakeholder Matrix</h5>
+            <p>Four primary stakeholders interact within the agricultural supply chain, each burdened by specific information asymmetry:</p>
+            <div class="table-responsive">
+              <table class="report-table">
+                <thead>
+                  <tr><th>Stakeholder</th><th>Current Information Gap</th><th>Downside Risk</th><th>FPO Catalogue Intervention</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Smallholder Farmer</strong></td>
+                    <td>Zero visibility into daily market demand, buyer specifications, or fair price before harvest.</td>
+                    <td>Forced to harvest blind, accept distress spot prices, and suffer unofficial weighment deductions.</td>
+                    <td><strong>72h Pre-Harvest Listing:</strong> Guaranteed price floor, locked Purchase Order, and scheduled dawn harvest.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>FPO QC Lead</strong></td>
+                    <td>Inconsistent field data, subjective grading, and no verifiable photographic baseline.</td>
+                    <td>Buyer dispute escalations, payment rejections, and reputation erosion at wholesale gates.</td>
+                    <td><strong>Optical Calibration Protocol:</strong> Standard 3-photo checklist with millimeter scale strip and agronomist sign-off.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Institutional Buyer</strong></td>
+                    <td>Blind procurement from mandi brokers with high visual fraud, unknown harvest dates, and short shelf-life.</td>
+                    <td>Excessive sorting labor (12–18%), high sorting waste (&gt;15%), and unpredictable delivery times.</td>
+                    <td><strong>Verified Spec Sheet:</strong> AGMARK grading, measured diameter/Brix, origin batch ID, and guaranteed +36h freshness.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Traditional Commission Agent</strong></td>
+                    <td>Relies on lack of transparency and physical distress to extract opaque brokerage margins.</td>
+                    <td>High friction, manual cash reconciliation, and increasing merchant disintermediation.</td>
+                    <td><strong>Digital Partner Model:</strong> Agents transition to authorized FPO fulfillment and sorting partners on fixed service fees.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
+          <!-- CHAPTER 4 -->
           <div class="ch-content" id="ch4">
-            <h5>4. End-to-End Operating Protocol</h5>
-            <p>Operates on a 5-stage SLA: (1) Farmer WhatsApp submission at T-72h, (2) Agronomist audit & Batch ID issuance at T-48h, (3) 7:00 AM catalogue broadcast at T-36h, (4) Pre-booking & synchronized dawn harvest at T-18h, (5) Consolidated LCV delivery and T+24h UPI settlement upon digital GRN sign-off.</p>
+            <h5>4. Target Customer Segmentation & Value Proposition Canvas</h5>
+            <p>To ensure 100% crop absorption across all 40 weekly lots, the FPO segments institutional buyers into 3 balanced tiers:</p>
+            <div class="slide-grid-3" style="margin-top:0.75rem;">
+              <div class="deck-card">
+                <span class="tier-badge">Tier 1 • 45% Volume</span>
+                <h4>Modern Retail & Q-Commerce</h4>
+                <p class="tier-clients">Blinkit, Zepto, Swiggy Instamart, Reliance Fresh</p>
+                <div class="tier-feature"><strong>Need:</strong> Uniform Grade A produce (&lt;2% defect), strict cosmetic grading, daily morning replenishment.</div>
+                <div class="tier-feature"><strong>Value Delivered:</strong> +36 hours extended shelf-life, eliminating 12% back-store sorting waste.</div>
+              </div>
+              <div class="deck-card">
+                <span class="tier-badge">Tier 2 • 35% Volume</span>
+                <h4>HoReCa & Cloud Kitchens</h4>
+                <p class="tier-clients">Hotels, Restaurants, Caterers, Rebel Foods</p>
+                <div class="tier-feature"><strong>Need:</strong> Grade A & B culinary staples, high edible yield, predictable bi-weekly contract pricing.</div>
+                <div class="tier-feature"><strong>Value Delivered:</strong> Direct farmgate pricing 8% below mandi spot rates with invoice stability.</div>
+              </div>
+              <div class="deck-card">
+                <span class="tier-badge">Tier 3 • 20% Volume</span>
+                <h4>Food Processing Units</h4>
+                <p class="tier-clients">Puree manufacturers, ketchup/sauce plants, dehydrators</p>
+                <div class="tier-feature"><strong>Need:</strong> Bulk absorption of cosmetic Grade C produce with high pulp content and chemical purity.</div>
+                <div class="tier-feature"><strong>Value Delivered:</strong> 100% salvage of sub-cosmetic yield, completely eliminating farmgate dumping.</div>
+              </div>
+            </div>
           </div>
 
+          <!-- CHAPTER 5 -->
           <div class="ch-content" id="ch5">
-            <h5>5. Financial Calculations & Unit Economics</h5>
-            <p><strong>Weekly GMV:</strong> 40 lots $\times$ 18 Quintals $\times$ ₹2,200/Qtl = <strong>₹15,84,000 / week</strong>.</p>
-            <p><strong>Monthly GMV:</strong> ₹15,84,000 $\times$ 4.2 weeks = <strong>₹66,52,800 (~₹66.5 Lakhs / month)</strong>.</p>
-            <p><strong>FPO Monthly Revenue:</strong> 3.5% commission (₹2,32,848) + ₹50 listing fees (₹8,400) + 1.0% logistics fee (₹66,528) = <strong>₹3,07,776 / month</strong>.</p>
-            <p><strong>FPO Monthly OPEX:</strong> 2 scouts + manager + API + crate fund = <strong>₹1,02,632 / month</strong>.</p>
-            <p><strong>Monthly Net Surplus:</strong> ₹3,07,776 - ₹1,02,632 = <strong>₹2,05,144 / month (₹24.61 Lakhs / year)</strong>.</p>
-            <p><strong>Farmer Net Gain:</strong> Mandi payout is ₹1,751/Qtl vs. FPO payout of ₹2,202.75/Qtl $\rightarrow$ <strong>+₹451.75 / Qtl (+25.8% net cash increase)</strong>, delivering <strong>₹1.64 Crores</strong> in collective annual uplift.</p>
+            <h5>5. Standard Operating Protocol & Quality Assurance Framework</h5>
+            <p><strong>The 5-Stage Operating Flow (SLA Timeline):</strong></p>
+            <div class="flow-horizontal-5" style="margin-top:0.75rem;">
+              <div class="step-card"><span class="s-time">T - 72h</span><h5>1. Field Listing</h5><p>Scout logs 3 calibrated photos with FPO reference scale.</p></div>
+              <div class="step-card"><span class="s-time">T - 48h</span><h5>2. QC Audit</h5><p>Agronomist reviews photos against AGMARK standards; issues Batch ID.</p></div>
+              <div class="step-card"><span class="s-time">T - 36h</span><h5>3. Catalogue Launch</h5><p>Web portal + 7:00 AM WhatsApp broadcast to 120+ buyers.</p></div>
+              <div class="step-card"><span class="s-time">T - 18h</span><h5>4. Pre-Booking</h5><p>Buyer locks PO with advance escrow; dawn harvest begins.</p></div>
+              <div class="step-card"><span class="s-time">T + 24h</span><h5>5. Delivery & Pay</h5><p>Direct LCV transit; buyer signs GRN; automated UPI payout.</p></div>
+            </div>
+            <p style="margin-top:1rem;"><strong>The Standardized 3-Photo Rule:</strong></p>
+            <ul class="deck-list">
+              <li><strong>Photo 1 (Field Canopy):</strong> Wide-angle shot showing maturity stage, overall plant health, and estimated lot yield.</li>
+              <li><strong>Photo 2 (Crated Produce Assortment):</strong> High-angle shot of harvested produce arranged in a standard 20-kg crate showing color uniformity.</li>
+              <li><strong>Photo 3 (Cross-Section with Optical Scale):</strong> Transverse cut of random sample produce placed directly adjacent to the official FPO calibration strip (showing millimeter scale, diameter, internal seed development, and color fidelity).</li>
+            </ul>
+          </div>
+
+          <!-- CHAPTER 6 -->
+          <div class="ch-content" id="ch6">
+            <h5>6. Unit Economics, Revenue Model & Financial Waterfall</h5>
+            <p><strong>Core Operating Assumptions:</strong> 180 smallholders • 40 active lots/week • 18 Quintals/lot • 72 MT weekly volume • ₹2,200/Qtl average benchmark price • 4.2 weeks per operational month.</p>
+            <div class="slide-grid-2" style="margin-top:0.75rem;">
+              <div class="deck-card">
+                <h4><i class="fa-solid fa-building text-emerald"></i> FPO Monthly Revenue Model</h4>
+                <div class="deck-mini-table">
+                  <div class="dm-row"><span>Total Monthly GMV:</span><strong>₹66,52,800</strong></div>
+                  <div class="dm-row"><span>3.5% Catalogue Facilitation Fee:</span><strong>₹2,32,848</strong></div>
+                  <div class="dm-row"><span>₹50 / Lot Listing Fee (168 lots):</span><strong>₹8,400</strong></div>
+                  <div class="dm-row"><span>1.0% Logistics Coordination Fee:</span><strong>₹66,528</strong></div>
+                  <div class="dm-row total"><span>Total Monthly Gross Revenue:</span><strong class="text-emerald">₹3,07,776</strong></div>
+                  <div class="dm-row"><span>Monthly OPEX (Scouts, Manager, Tech, Crates):</span><span>-₹1,02,632</span></div>
+                  <div class="dm-row surplus"><span>Net Monthly Surplus (Retained Profit):</span><strong class="text-emerald">₹2,05,144 / mo</strong></div>
+                  <div class="dm-row highlight"><span>Annualized Retained Profit:</span><strong class="text-emerald">₹24,61,728 / yr</strong></div>
+                </div>
+              </div>
+
+              <div class="deck-card">
+                <h4><i class="fa-solid fa-coins text-emerald"></i> Farmer Realization Waterfall (₹ / Qtl)</h4>
+                <div class="deck-mini-table">
+                  <div class="dm-row"><span>Mandi Gross Price:</span><span>₹2,200.00</span></div>
+                  <div class="dm-row text-red"><span>Less Mandi Deductions (Comm + Cuts + Freight):</span><span>-₹449.00</span></div>
+                  <div class="dm-row"><span>Mandi Net Realization:</span><strong>₹1,751.00 / Qtl</strong></div>
+                  <div class="dm-row" style="border-top:1px dashed #cbd5e1; margin-top:4px;"><span>FPO Contract Farmgate Price:</span><strong>₹2,350.00</strong></div>
+                  <div class="dm-row text-red"><span>Less FPO Service Fee (3.5% + Listing + Crates):</span><span>-₹147.25</span></div>
+                  <div class="dm-row surplus"><span>FPO Net Farmer Payout:</span><strong class="text-emerald">₹2,202.75 / Qtl</strong></div>
+                  <div class="dm-row highlight"><span>Net Cash Gain:</span><strong class="text-emerald">+₹451.75 / Qtl (+25.8%)</strong></div>
+                  <div class="dm-row highlight"><span>Collective Member Annual Gain:</span><strong class="text-emerald">₹1,64,07,600 / yr</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHAPTER 7 -->
+          <div class="ch-content" id="ch7">
+            <h5>7. Risk Engineering & Practical Mitigations</h5>
+            <p>Agricultural platforms fail when physical realities diverge from digital claims. The FPO establishes 5 operational risk barriers and 2 buyer growth engines:</p>
+            <div class="table-responsive" style="margin-top:0.75rem;">
+              <table class="report-table">
+                <thead>
+                  <tr><th>#</th><th>Risk Event</th><th>Severity</th><th>Mitigation Architecture</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>1</strong></td><td>Photo Drift & Visual Fraud</td><td>CRITICAL</td><td><strong>Optical Calibration Strip:</strong> Mandatory reference coin/strip in every cross-section photo; random 10% hub audit gate with digital spectrometer testing.</td></tr>
+                  <tr><td><strong>2</strong></td><td>Harvest Weather Delay</td><td>HIGH</td><td><strong>12-Hour Confirmation Ping:</strong> Scouts trigger automated weather checks 12h prior to harvest; backup batches automatically re-slotted on the live catalogue.</td></tr>
+                  <tr><td><strong>3</strong></td><td>Buyer Payment Defaults</td><td>CRITICAL</td><td><strong>20% Advance Escrow:</strong> 20% token deposit locked on Purchase Order booking; remaining 80% cleared via automated escrow upon digital GRN sign-off.</td></tr>
+                  <tr><td><strong>4</strong></td><td>Transit Bruising & Rejection</td><td>MEDIUM</td><td><strong>Ventilated HDPE Crates:</strong> Complete replacement of traditional gunny sacks with rigid stackable 20-kg HDPE crates, reducing transit damage from 18% to &lt;2.5%.</td></tr>
+                  <tr><td><strong>5</strong></td><td>Farmer Side-Selling to Mandi</td><td>HIGH</td><td><strong>T+24h UPI Payouts:</strong> Fast guaranteed direct bank settlement + 50% year-end patronage dividend on net FPO surplus, ensuring high farmer retention.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="slide-grid-2" style="margin-top:1rem;">
+              <div class="growth-card">
+                <i class="fa-brands fa-whatsapp text-emerald" style="font-size:1.6rem;"></i>
+                <div>
+                  <h6 style="font-weight:800; margin-bottom:0.25rem;">1. 7:00 AM WhatsApp "Harvest Alert"</h6>
+                  <p style="font-size:0.8rem; color:var(--muted);">Interactive Meta Cloud API push broadcast delivered directly to procurement managers with 1-click booking buttons, locking 65% of lots within 90 minutes.</p>
+                </div>
+              </div>
+              <div class="growth-card">
+                <i class="fa-solid fa-qrcode text-blue" style="font-size:1.6rem;"></i>
+                <div>
+                  <h6 style="font-weight:800; margin-bottom:0.25rem;">2. "Farm-to-Shelf" Traceability QR</h6>
+                  <p style="font-size:0.8rem; color:var(--muted);">Crate-level QR codes displayed directly on retail supermarket shelves, enabling consumers to inspect farmer origin, harvest date, and pesticide safety certifications.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHAPTER 8 -->
+          <div class="ch-content" id="ch8">
+            <h5>8. 90-Day Pilot-to-Scale Implementation Roadmap</h5>
+            <p>A disciplined 3-phase execution roadmap designed to systematically de-risk operational scaling from a 40-farmer pilot to full 180-farmer linkage:</p>
+            <div class="roadmap-3-boxes" style="margin-top:0.75rem;">
+              <div class="road-box">
+                <span class="r-badge">Month 1 • Days 1–30</span>
+                <h5>Foundation & Standardization</h5>
+                <ul style="font-size:0.8rem; padding-left:1rem; margin-top:0.35rem; color:var(--text);">
+                  <li>Enroll 40 lead smallholders across 2 staple clusters.</li>
+                  <li>Distribute calibrated optical strips & test kits.</li>
+                  <li>Execute 15 trial lots with zero buyer reject rate.</li>
+                </ul>
+              </div>
+              <div class="road-box">
+                <span class="r-badge">Month 2 • Days 31–60</span>
+                <h5>Pilot & Matchmaking</h5>
+                <ul style="font-size:0.8rem; padding-left:1rem; margin-top:0.35rem; color:var(--text);">
+                  <li>Expand to 90 farmers; scale to 20 listings/week.</li>
+                  <li>Onboard 15 institutional buyers across 3 tiers.</li>
+                  <li>Deploy automated T+24h UPI settlement ledger.</li>
+                </ul>
+              </div>
+              <div class="road-box">
+                <span class="r-badge">Month 3 • Days 61–90</span>
+                <h5>Full Scale Operations</h5>
+                <ul style="font-size:0.8rem; padding-left:1rem; margin-top:0.35rem; color:var(--text);">
+                  <li>All 180 farmers active across 5 village hubs.</li>
+                  <li>Stabilize 40 weekly listings (72 MT volume).</li>
+                  <li>Integrate ONDC protocols for automated wholesale discovery.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="qc-highlight-box" style="margin-top:1rem;">
+              <strong><i class="fa-solid fa-graduation-cap text-emerald"></i> Academic Declaration & Verification:</strong>
+              <span>Submitted by Somyajeet Singh (Roll No: 150096725043), School of Future Tech, ITM Skills University. Prepared as coursework deliverables for Go-to-Market & Customer Operations (Sprint I, 2026).</span>
+            </div>
           </div>
         </div>
       </div>
